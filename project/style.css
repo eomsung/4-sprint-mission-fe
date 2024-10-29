@@ -59,7 +59,7 @@ a{
     margin-left: 12.5rem;
 }
 #LoginButton{
-    background-color: var(--button-active-color);
+    background-color: var(--blue);
     color: #F3F4F6;
     width: 8rem;
     height: 3rem; 
@@ -111,7 +111,7 @@ a{
     height: 3.5rem;
     border-radius: 2.5rem;
     font-size: 1.25rem;
-    color: #f9fafb;
+    color: var(--maincolor);
     line-height: 2rem;
     font-weight: 600;
     display: flex;
