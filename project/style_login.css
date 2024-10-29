@@ -165,3 +165,6 @@ input[type="password"]::-ms-clear {
     font-weight: 500;
     gap: 0.25rem; /* 4px */
 }
+.login_text{
+    color: var(--button-active-color);
+}
