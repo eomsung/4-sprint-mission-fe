@@ -19,6 +19,7 @@ body {
     display: flex;
     justify-content: center;
     font-family: 'Pretendard Variable', sans-serif;
+    white-space: nowrap;
 }
 a{
     cursor: pointer;
@@ -131,7 +132,7 @@ a{
 }
 .section_box{
     background-color: #fcfcfc;
-    width: 61.75rem;
+    min-width: 61.75rem;
     height: 27.75rem;
     display: flex;
     flex-direction: row;
@@ -199,6 +200,7 @@ a{
 .section2_inner{
     display: flex;
     align-items: center;
+    min-width: 69.375rem;
 }
 .img_box{
     display: flex;
