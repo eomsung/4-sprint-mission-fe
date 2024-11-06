@@ -9,11 +9,11 @@ icons.forEach(icon => {
         let type = input.getAttribute('type');
         if(type === 'password'){
             type ='text';
-            icon.setAttribute('src','img/btn_visibility_on_24px.png')
+            icon.setAttribute('src','img/btn_visibility_on.png')
         }
         else{
             type='password';
-            icon.setAttribute('src','img/btn_visibility_off_24px.png')
+            icon.setAttribute('src','img/btn_visibility_off.png')
         }
         input.setAttribute('type',type);
     })
