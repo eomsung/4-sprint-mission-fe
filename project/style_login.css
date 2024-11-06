@@ -1,14 +1,3 @@
-:root {
-    --box-background-color: #F3F4F6; 
-    --box-text-color: #9CA3AF;
-    --input-focus-color: #3692FF; 
-    --button-background-color: #9CA3AF;
-    --button-text-color: #F3F4F6; 
-    --social-background-color: #E6F2FF; 
-    --text-color-dark: #1F2937; 
-    --button-active-color: #3692FF;
-}
-
 html {
     font-size: 16px;
 }
