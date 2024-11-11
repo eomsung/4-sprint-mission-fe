@@ -1,3 +1,13 @@
+const USER_DATA = [
+    { email: 'codeit1@codeit.com', password: "codeit101!" },
+    { email: 'codeit2@codeit.com', password: "codeit202!" },
+    { email: 'codeit3@codeit.com', password: "codeit303!" },
+    { email: 'codeit4@codeit.com', password: "codeit404!" },
+    { email: 'codeit5@codeit.com', password: "codeit505!" },
+    { email: 'codeit6@codeit.com', password: "codeit606!" },
+]
+
+
 // 비밀번호 암호화 해제/설정 버튼
 let icons = document.querySelectorAll('.icon_eyes');
 icons.forEach(icon => {
@@ -22,8 +32,14 @@ let button = document.querySelector('#section1_button');
 let inputbox = document.querySelectorAll('#section1 input');
 const email_pattern =/^[a-zA-Z0-9]+@[a-zA-Z]+\.+[a-zA-Z]/;
 const pw_pattern=/^.{8,}/;
-let email_check =false;
-let pw_check =false;
+let email_check =false;//형식이 올바른지 확인
+let pw_check =false;//형식이 올바른지 확인
+
+
+
+
+
+
 
 const make_alret_msg = (input,text)=>{
     let box = input.closest('.section1_box')
@@ -82,17 +98,21 @@ const check_input= () =>{
     
     if(pw_check === true && email_check === true){
         button.style.backgroundColor ='#3692FF';
+        button.disabled = false;
     }
     else{
         button.style.backgroundColor ='#9CA3AF';
+        button.disabled = true;
     }
 }
 
 inputbox.forEach(input=>{
     input.addEventListener('input',()=>{
+        console.log(input.value);
         if(input.id === "section1_emailbox"){
             if(email_pattern.test(input.value)){
                 email_check=true;
+                // if(input.value)
             }
             else{
                 email_check=false;
@@ -113,4 +133,20 @@ inputbox.forEach(input=>{
     });
 
     input.addEventListener('input',check_input);
+
 });
+
+button.addEventListener('click',()=>{
+    const email_input = document.querySelector('#section1_emailbox').value;
+    const pw_input = document.querySelector('#section1_pwbox').value;
+    const user_exist = USER_DATA.some(user => user.email === email_input && user.password === pw_input);
+    if(pw_check === true && email_check === true ){
+        if(!user_exist){ // 존재 안하면?
+            alert("비밀번호가 일치하지 않습니다.")
+        }
+        else{
+            location.href = 'items.html';
+        }
+    }
+});
+
