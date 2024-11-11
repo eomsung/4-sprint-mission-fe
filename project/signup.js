@@ -158,7 +158,6 @@ inputbox.forEach(input=>{
 
 button.addEventListener('click',()=>{
     const email_input = document.querySelector('#section1_emailbox').value;
-    const pw_input = document.querySelector('#section1_pwbox').value;
     const user_exist = USER_DATA.some(user => user.email === email_input);
     if(pw_check === true && email_check === true && pw_same_check === true){
         if(!user_exist){ // 존재 안하면?
