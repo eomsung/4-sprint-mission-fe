@@ -34,8 +34,8 @@ const email_pattern =/^[a-zA-Z0-9]+@[a-zA-Z]+\.+[a-zA-Z]/;
 const pw_pattern=/^.{8,}/;
 let email_check =false;//형식이 올바른지 확인
 let pw_check =false;//형식이 올바른지 확인
-
-
+let modal =document.querySelector('.modal');
+let error_button = document.querySelector('#error_msg_button');
 
 
 
@@ -141,8 +141,8 @@ button.addEventListener('click',()=>{
     const pw_input = document.querySelector('#section1_pwbox').value;
     const user_exist = USER_DATA.some(user => user.email === email_input && user.password === pw_input);
     if(pw_check === true && email_check === true ){
-        if(!user_exist){ // 존재 안하면?
-            alert("비밀번호가 일치하지 않습니다.")
+        if(!user_exist){ 
+            modal.classList.remove('hidden');
         }
         else{
             location.href = 'items.html';
@@ -150,3 +150,7 @@ button.addEventListener('click',()=>{
     }
 });
 
+
+error_button.addEventListener('click',()=>{
+    modal.classList.add('hidden');
+})
