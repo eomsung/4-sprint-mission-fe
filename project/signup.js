@@ -35,7 +35,8 @@ const pw_pattern=/^.{8,}/;
 let email_check =false;//형식이 올바른지 확인
 let pw_check =false;//형식이 올바른지 확인
 let pw_same_check = false;
-
+let modal =document.querySelector('.modal');
+let error_button = document.querySelector('#error_msg_button');
 
 
 
@@ -164,8 +165,11 @@ button.addEventListener('click',()=>{
             location.href = 'login.html';
         }
         else{
-            alert("사용 중인 이메일입니다.")
+            modal.classList.remove('hidden');
         }
     }
 });
 
+error_button.addEventListener('click',()=>{
+    modal.classList.add('hidden');
+})
