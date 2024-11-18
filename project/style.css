@@ -302,9 +302,26 @@ a{
     #img_panda{
         margin-left: 1.5rem;
     }
+
+    .section img {
+        width: 100%; 
+        height: auto; 
+        max-width: 400px; 
+        margin: 0 auto; 
+    }
 }
 
 @media (min-width:23.4375rem) and (max-width:46.4375rem){
+    .section_box img {
+        width: calc(100% - 64px);
+        height: auto; 
+        margin: 0 auto; 
+    }
+
+    .section_box {
+        padding: 0 32px;
+        box-sizing: border-box; 
+    }
     #container {
         padding: 2rem;
     }

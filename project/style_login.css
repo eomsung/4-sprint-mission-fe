@@ -212,3 +212,23 @@ input[type="password"]::-ms-clear {
     margin-top: 0.5rem;
     margin-left: 1rem;
 }
+
+
+@media (max-width: 743px) and (min-width: 375px) {
+    #box {
+        width: calc(100% - 32px); 
+        max-width: 400px;        
+        box-sizing: border-box; 
+    }
+
+    #section1_emailbox,
+    #section1_pwbox,
+    #section1_pwcheckbox,
+    #section1_button,
+    #section1_nicknamebox,
+    #section1_social,
+    #section1_socialinner  {
+        width: 100%; 
+        max-width: 400px; 
+    }
+}
