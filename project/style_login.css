@@ -37,7 +37,6 @@ body {
 .error_msg p{
     margin: 0;
     padding-bottom: 40px;
-
 }
 #error_msg_button{
     position:absolute;
