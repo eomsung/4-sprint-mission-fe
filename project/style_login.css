@@ -215,12 +215,13 @@ input[type="password"]::-ms-clear {
 
 
 @media (max-width: 743px) and (min-width: 375px) {
+    
     #box {
         width: calc(100% - 32px); 
         max-width: 400px;        
         box-sizing: border-box; 
     }
-
+    
     #section1_emailbox,
     #section1_pwbox,
     #section1_pwcheckbox,
@@ -230,5 +231,8 @@ input[type="password"]::-ms-clear {
     #section1_socialinner  {
         width: 100%; 
         max-width: 400px; 
+    }
+    .error_msg{
+        width: 80%; 
     }
 }
