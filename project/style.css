@@ -3,6 +3,20 @@ html {
     color: var(--text-color-basic);
 }
 
+@media (min-width:75rem) {
+    
+}
+@media (min-width:46.5rem) and (max-width:74.9375rem){
+    
+}
+
+@media (min-width:23.4375rem) and (max-width:46.4375rem){
+    #container {
+        padding: 2rem;
+    }
+}
+
+
 body {
     margin: 0;
     display: flex;
@@ -71,8 +85,8 @@ a{
     align-items: flex-end; 
 }
 #header_inner{
-    width: 68.75rem;
-    height: 21.25rem;
+    /* width: 68.75rem;
+    height: 21.25rem; */
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -86,8 +100,8 @@ a{
     height: 21.25rem;
 }
 #header_inner_left{
-    width: 22.3125rem;
-    height: 16.25rem;
+    /* width: 22.3125rem;
+    height: 16.25rem; */
     display: flex;
     flex-direction: column; 
 }
@@ -159,8 +173,9 @@ a{
     justify-content: space-between; 
     align-items: flex-end; 
     text-align: right;
-
 }
+
+
 .section_box.btw{
     background-color: var(--section-background);
     width: 61.75rem;

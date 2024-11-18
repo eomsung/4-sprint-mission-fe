@@ -108,24 +108,12 @@ const check_input= () =>{
 
 inputbox.forEach(input=>{
     input.addEventListener('input',()=>{
-        console.log(input.value);
         if(input.id === "section1_emailbox"){
-            if(email_pattern.test(input.value)){
-                email_check=true;
-                // if(input.value)
-            }
-            else{
-                email_check=false;
-            }
+            email_check = email_pattern.test(input.value);
         }
         
         else if(input.id === "section1_pwbox"){
-            if(pw_pattern.test(input.value)){
-                pw_check = true;
-            }
-            else{
-                pw_check = false;
-            }
+            pw_check = pw_pattern.test(input.value);
         }
     })
     input.addEventListener('focus',()=>{
