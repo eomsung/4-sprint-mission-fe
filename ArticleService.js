@@ -35,16 +35,15 @@ const getArticleList = async (page = 1, pageSize = 100, keyword = "") => {
 };
 
 const createArticle = async (title, content, image) => {
-  const data = {
-    title,
-    content,
-    image,
-  };
   try {
     const res = await fetch(BASE_URL, {
       method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        title,
+        content,
+        image,
+      }),
     });
     if (!res.ok) {
       throw new Error(`Error: response status is ${res.status}`);
@@ -86,9 +85,6 @@ const deleteArticle = async (id) => {
     }
     const res = await fetch(`${BASE_URL}/${id}`, {
       method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
     });
     if (!res.ok) {
       throw new Error(`Error: response status is ${res.status}`);
