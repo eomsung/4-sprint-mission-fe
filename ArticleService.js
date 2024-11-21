@@ -1,6 +1,6 @@
 const BASE_URL = "https://sprint-mission-api.vercel.app/articles";
 
-const getArticle = (id) => {
+export const getArticle = (id) => {
   fetch(`${BASE_URL}/${id}`, {
     method: "GET",
   })
@@ -14,7 +14,7 @@ const getArticle = (id) => {
     .catch((e) => console.log(e.message));
 };
 
-const getArticleList = (page = 1, pageSize = 100, keyword = "") => {
+export const getArticleList = (page = 1, pageSize = 100, keyword = "") => {
   fetch(`${BASE_URL}?page=${page}&pageSize=${pageSize}&keyword=${keyword}`, {
     method: "GET",
   })
@@ -28,7 +28,7 @@ const getArticleList = (page = 1, pageSize = 100, keyword = "") => {
     .catch((e) => console.log(e.message));
 };
 
-const createArticle = (title, content, image) => {
+export const createArticle = (title, content, image) => {
   fetch(BASE_URL, {
     method: "POST",
     headers: { "content-type": "application/json" },
@@ -46,7 +46,7 @@ const createArticle = (title, content, image) => {
     })
     .catch((e) => console.log(e.message));
 };
-const patchArticle = (id, title, content, image) => {
+export const patchArticle = (id, title, content, image) => {
   fetch(`${BASE_URL}/${id}`, {
     method: "PATCH",
     headers: {
@@ -67,7 +67,7 @@ const patchArticle = (id, title, content, image) => {
     .catch((e) => console.log(e.message));
 };
 
-const deleteArticle = (id) => {
+export const deleteArticle = (id) => {
   fetch(`${BASE_URL}/${id}`, {
     method: "DELETE",
     headers: {

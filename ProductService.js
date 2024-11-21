@@ -1,6 +1,6 @@
 const BASE_URL = "https://sprint-mission-api.vercel.app/products";
 
-const getProduct = async (id) => {
+export const getProduct = async (id) => {
   try {
     if (!id) {
       throw new Error("For 'id': Required field is not provided.");
@@ -17,7 +17,11 @@ const getProduct = async (id) => {
   }
 };
 
-const getProductList = async (page = 1, pageSize = 100, keyword = "") => {
+export const getProductList = async (
+  page = 1,
+  pageSize = 100,
+  keyword = ""
+) => {
   try {
     const res = await fetch(
       `${BASE_URL}?page=${page}&pageSize=${pageSize}&keyword=${keyword}`,
@@ -34,7 +38,7 @@ const getProductList = async (page = 1, pageSize = 100, keyword = "") => {
   }
 };
 
-const createProduct = async (name, description, price, tag, images) => {
+export const createProduct = async (name, description, price, tag, images) => {
   try {
     const res = await fetch(BASE_URL, {
       method: "POST",
@@ -55,7 +59,14 @@ const createProduct = async (name, description, price, tag, images) => {
     console.log(e.message);
   }
 };
-const patchProduct = async (id, name, description, price, tag, images) => {
+export const patchProduct = async (
+  id,
+  name,
+  description,
+  price,
+  tag,
+  images
+) => {
   try {
     if (!id) {
       throw new Error("For 'id': Required field is not provided.");
@@ -82,7 +93,7 @@ const patchProduct = async (id, name, description, price, tag, images) => {
   }
 };
 
-const deleteProduct = async (id) => {
+export const deleteProduct = async (id) => {
   try {
     if (!id) {
       throw new Error("For 'id': Required field is not provided.");
