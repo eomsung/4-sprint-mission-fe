@@ -5,7 +5,7 @@ const getProduct = async (id) => {
     if (!id) {
       throw new Error("For 'id': Required field is not provided.");
     }
-    const res = await fetch(`${BASE_URL}?id=${id}`, {
+    const res = await fetch(`${BASE_URL}/${id}`, {
       method: "GET",
     });
     if (!res.ok) {
@@ -97,3 +97,6 @@ const deleteProduct = async (id) => {
     console.log(e.message);
   }
 };
+
+const result = await getProduct();
+console.log(result);
