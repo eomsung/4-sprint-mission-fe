@@ -108,6 +108,3 @@ export const deleteProduct = async (id) => {
     console.log(e.message);
   }
 };
-
-const result = await getProduct();
-console.log(result);
