@@ -38,7 +38,14 @@ export const getProductList = async (
   }
 };
 
-export const createProduct = async (name, description, price, tag, images) => {
+export const createProduct = async (
+  name,
+  description,
+  price,
+  manufacturer,
+  tags,
+  images
+) => {
   try {
     const res = await fetch(BASE_URL, {
       method: "POST",
@@ -47,7 +54,8 @@ export const createProduct = async (name, description, price, tag, images) => {
         name,
         description,
         price,
-        tag,
+        manufacturer,
+        tags,
         images,
       }),
     });
@@ -64,7 +72,8 @@ export const patchProduct = async (
   name,
   description,
   price,
-  tag,
+  manufacturer,
+  tags,
   images
 ) => {
   try {
@@ -80,7 +89,8 @@ export const patchProduct = async (
         name,
         description,
         price,
-        tag,
+        manufacturer,
+        tags,
         images,
       }),
     });

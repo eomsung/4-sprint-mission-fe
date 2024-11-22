@@ -10,7 +10,7 @@ export const getArticle = (id) => {
       }
       return res.json();
     })
-    // .then((article) => console.log(article))
+    .then((article) => console.log(article))
     .catch((e) => console.log(e.message));
 };
 
@@ -24,7 +24,7 @@ export const getArticleList = (page = 1, pageSize = 100, keyword = "") => {
       }
       return res.json();
     })
-    // .then((list) => console.log(list))
+    .then((list) => console.log(list))
     .catch((e) => console.log(e.message));
 };
 
@@ -44,6 +44,7 @@ export const createArticle = (title, content, image) => {
       }
       return res.json();
     })
+    .then((article) => console.log(article))
     .catch((e) => console.log(e.message));
 };
 export const patchArticle = (id, title, content, image) => {
@@ -64,6 +65,7 @@ export const patchArticle = (id, title, content, image) => {
       }
       return res.json();
     })
+    .then((article) => console.log(article))
     .catch((e) => console.log(e.message));
 };
 
