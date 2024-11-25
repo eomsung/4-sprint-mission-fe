@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { NavigationBar } from "./Component/NavigationBar";
+import { BestProduct } from "./Component/BestProduct";
+import { useState, useEffect } from "react";
+import { getProductList } from "./Api/ProductsService";
+
+const PAGESIZE = 4;
 
 function App() {
+  const [items, setItems] = useState([]);
+
+  const handleLoad = async (Options) => {
+    let data = await getProductList(Options);
+    console.log(typeof data);
+    console.log(data);
+    setItems(data);
+  };
+
+  useEffect(() => {
+    handleLoad({ page: 5, pageSize: PAGESIZE });
+  }, []);
+  asd;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <NavigationBar></NavigationBar>
+      <BestProduct items={items.list}></BestProduct>
     </div>
   );
 }

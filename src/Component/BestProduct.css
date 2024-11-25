@@ -1,0 +1,27 @@
+.BestProduct-img {
+  width: 28.2rem;
+  height: 28.2rem;
+  object-fit: cover;
+  border-radius: 2.4rem;
+}
+.BestProductList {
+  display: flex;
+  justify-content: space-around;
+  gap: 1.6rem;
+}
+.BestProductContainer {
+  margin-top: 2.6rem;
+  display: flex;
+  flex-direction: column;
+  width: 120rem;
+}
+.BestProductSection {
+  display: flex;
+  justify-content: center;
+}
+.text {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  line-height: 3.2rem;
+}
