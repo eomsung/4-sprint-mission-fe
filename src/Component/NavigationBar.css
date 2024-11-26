@@ -10,6 +10,10 @@
   border-bottom: 0.1rem solid #dfdfdf;
   position: sticky;
   box-sizing: border-box;
+  top: 0;
+  box-sizing: border-box;
+  background-color: white;
+  z-index: 10;
 }
 .NavigationMenu {
   display: flex;

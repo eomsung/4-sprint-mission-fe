@@ -2,27 +2,53 @@ import { NavigationBar } from "./Component/NavigationBar";
 import { BestProduct } from "./Component/BestProduct";
 import { useState, useEffect } from "react";
 import { getProductList } from "./Api/ProductsService";
+import { SellingProduct } from "./Component/SellingProduct";
+import { ProductMenu } from "./Component/ProductMenu";
 
-const PAGESIZE = 4;
+const PAGESIZEBEST = 4;
+const PAGESIZESELLING = 5;
 
 function App() {
-  const [items, setItems] = useState([]);
+  const [Bestitems, setBestItems] = useState([]);
+  const [Sellingitems, setSellingItems] = useState([]);
+  const [SellingNextitems, setSellingNextItems] = useState([]);
+  const [BestPage, setBestPage] = useState(5);
+  const [SellingPage, setSellingPage] = useState(4);
+  const [SellingNextPage, setSellingNextPage] = useState(5);
+  useEffect(() => {
+    handleLoadBest({ page: BestPage, pageSize: PAGESIZEBEST });
+    handleLoadSelling({ page: SellingPage, pageSize: PAGESIZESELLING });
+    handleLoadNextSelling({ page: SellingNextPage, pageSize: PAGESIZESELLING });
+  }, []);
 
-  const handleLoad = async (Options) => {
+  const handleLoadBest = async (Options) => {
     let data = await getProductList(Options);
-    console.log(typeof data);
-    console.log(data);
-    setItems(data);
+    setBestItems(data);
   };
 
-  useEffect(() => {
-    handleLoad({ page: 5, pageSize: PAGESIZE });
-  }, []);
-  asd;
+  const handleLoadSelling = async (Options) => {
+    let data = await getProductList(Options);
+    setSellingItems(data);
+  };
+  const handleLoadNextSelling = async (Options) => {
+    let data = await getProductList(Options);
+    setSellingNextItems(data);
+  };
+
+  const loadNextSellingPage = async () => {
+    setSellingPage((prevPage) => prevPage + 2);
+    setSellingNextItems((prevPage) => prevPage + 2);
+  };
+
   return (
     <div>
       <NavigationBar></NavigationBar>
-      <BestProduct items={items.list}></BestProduct>
+      <BestProduct items={Bestitems.list}></BestProduct>
+      <div>
+        <ProductMenu></ProductMenu>
+        <SellingProduct items={Sellingitems.list}></SellingProduct>
+        <SellingProduct items={SellingNextitems.list}></SellingProduct>
+      </div>
     </div>
   );
 }

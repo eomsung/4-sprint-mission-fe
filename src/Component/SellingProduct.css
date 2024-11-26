@@ -1,27 +1,17 @@
-.BestProduct-img {
-  width: 28.2rem;
-  height: 28.2rem;
+.SellingProduct-img {
+  width: 22.1rem;
+  height: 22.1rem;
   object-fit: cover;
-  border-radius: 2.4rem;
+  border-radius: 1.6rem;
 }
-.BestProductList {
+.SellingProductList {
   display: flex;
   justify-content: space-around;
-  gap: 1.6rem;
+  gap: 1.9rem;
 }
-.BestProductContainer {
-  display: flex;
-  flex-direction: column;
-}
-.BestProductSection {
+.SellingProductSection {
   display: flex;
   justify-content: center;
-}
-h3 {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-  line-height: 3.2rem;
 }
 .itemName {
   font-size: 1.4rem;
