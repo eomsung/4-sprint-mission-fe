@@ -10,7 +10,7 @@ export const NavigationBar = () => {
         <div> 자유게시판 </div>
         <div> 중고마켓</div>
       </div>
-      <button>로그인</button>
+      <button className="login">로그인</button>
     </div>
   );
 };

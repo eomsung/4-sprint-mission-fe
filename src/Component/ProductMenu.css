@@ -9,10 +9,31 @@
 }
 .Menu {
   display: flex;
+  gap: 1rem;
 }
 h3 {
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
   line-height: 3.2rem;
+}
+.MenuInput {
+  width: 32.5rem;
+  height: 4.2rem;
+  background-color: var(--Menu-input-color);
+  border: none;
+  border-radius: 1.2rem;
+}
+.register {
+  height: 4.2rem;
+}
+.orderSelect {
+  border: 0.1rem solid var(--Menu-border-color);
+  padding: 1.2rem 2rem;
+  width: 13rem;
+  height: 4.2rem;
+  border-radius: 1.2rem;
+  font-size: 1.6rem;
+  font-weight: 400;
+  text-align: center;
 }
