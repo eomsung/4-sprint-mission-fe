@@ -1,6 +1,9 @@
 const BASE_URL = "https://sprint-mission-api.vercel.app/articles";
 
 export const getArticle = (id) => {
+  if (!id || !Number.isInteger(id) || id < 0) {
+    console.error("Invalid ID");
+  }
   fetch(`${BASE_URL}/${id}`, {
     method: "GET",
   })
@@ -15,6 +18,12 @@ export const getArticle = (id) => {
 };
 
 export const getArticleList = (page = 1, pageSize = 100, keyword = "") => {
+  if (!Number.isInteger(page) || page < 1) {
+    console.error("Invalid page");
+  }
+  if (!Number.isInteger(pageSize) || pageSize < 1) {
+    console.error("Invalid pageSize");
+  }
   fetch(`${BASE_URL}?page=${page}&pageSize=${pageSize}&keyword=${keyword}`, {
     method: "GET",
   })
@@ -48,6 +57,9 @@ export const createArticle = (title, content, image) => {
     .catch((e) => console.log(e.message));
 };
 export const patchArticle = (id, title, content, image) => {
+  if (!id || !Number.isInteger(id) || id < 0) {
+    console.error("Invalid ID");
+  }
   fetch(`${BASE_URL}/${id}`, {
     method: "PATCH",
     headers: {
@@ -70,6 +82,9 @@ export const patchArticle = (id, title, content, image) => {
 };
 
 export const deleteArticle = (id) => {
+  if (!id || !Number.isInteger(id) || id < 0) {
+    console.error("Invalid ID");
+  }
   fetch(`${BASE_URL}/${id}`, {
     method: "DELETE",
     headers: {
