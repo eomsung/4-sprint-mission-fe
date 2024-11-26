@@ -1,4 +1,4 @@
-import pandaImage from "../img/panda.png";
+import pandaImage from "../img/panda.svg";
 import "./NavigationBar.css";
 import "../Global.css";
 
@@ -10,7 +10,7 @@ export const NavigationBar = () => {
         <div> 자유게시판 </div>
         <div> 중고마켓</div>
       </div>
-      <button className="login">로그인</button>
+      <a className="login button">로그인</a>
     </nav>
   );
 };

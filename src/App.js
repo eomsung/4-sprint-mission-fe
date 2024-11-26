@@ -62,7 +62,7 @@ function App() {
   };
 
   return (
-    <div className="appContainer">
+    <div>
       <NavigationBar></NavigationBar>
       <BestProduct items={Bestitems.list}></BestProduct>
       <div>

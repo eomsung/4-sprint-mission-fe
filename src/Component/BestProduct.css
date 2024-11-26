@@ -40,3 +40,8 @@ h3 {
   line-height: 1.8rem;
   color: var(--favorite-text-color);
 }
+.favorite {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}

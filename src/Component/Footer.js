@@ -1,8 +1,8 @@
 import "./Footer.css";
-import ic_facebook from "../img/ic_facebook.png";
-import ic_instagram from "../img/ic_instagram.png";
-import ic_twitter from "../img/ic_twitter.png";
-import ic_youtube from "../img/ic_youtube.png";
+import ic_facebook from "../img/ic_facebook.svg";
+import ic_instagram from "../img/ic_instagram.svg";
+import ic_twitter from "../img/ic_twitter.svg";
+import ic_youtube from "../img/ic_youtube.svg";
 export const Footer = () => {
   return (
     <footer className="footerSection">

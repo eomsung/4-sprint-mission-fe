@@ -1,5 +1,6 @@
 import "./SellingProduct.css";
 import noImage from "../img/noImage.jpg";
+import ic_heart from "../img/ic_heart.svg";
 
 export const SellingProduct = ({ items }) => {
   if (!Array.isArray(items) || items.length === 0) {
@@ -35,7 +36,10 @@ const SellingProductList = ({ item }) => {
         <p className="itemName">{`${item.name} 팝니다`}</p>
         <p className="itemPrice">{`${item.price}원`}</p>{" "}
         {/*  여기에 숫자가 커지면 , 넣는거 추가해야함 */}
-        <p className="itemFavorite">{item.favoriteCount}</p>
+        <span className="favorite">
+          <img src={ic_heart} alt="heartIcon" />
+          <p className="itemFavorite">{item.favoriteCount}</p>
+        </span>
       </div>
     </div>
   );
