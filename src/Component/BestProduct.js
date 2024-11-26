@@ -37,7 +37,7 @@ const BestProductList = ({ item }) => {
       <div>
         <p className="itemName">{`${item.name} 팝니다`}</p>
         <p className="itemPrice">{`${item.price}원`}</p>{" "}
-        {/*  여기에 숫자가 커지면 , 넣는거 추가해야함 */}
+        {/*  여기에 숫자가 커지면 , 넣는거 추가해야함 t*/}
         <span className="favorite">
           <img src={ic_heart} alt="heartIcon" />
           <p className="itemFavorite">{item.favoriteCount}</p>
