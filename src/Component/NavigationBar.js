@@ -4,13 +4,13 @@ import "../Global.css";
 
 export const NavigationBar = () => {
   return (
-    <div className="NavigationBar">
+    <nav className="NavigationBar">
       <div className="NavigationMenu">
         <img src={pandaImage} alt="pandaImage" />
         <div> 자유게시판 </div>
         <div> 중고마켓</div>
       </div>
       <button className="login">로그인</button>
-    </div>
+    </nav>
   );
 };

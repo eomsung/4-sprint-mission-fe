@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { getProductList } from "./Api/ProductsService";
 import { SellingProduct } from "./Component/SellingProduct";
 import { ProductMenu } from "./Component/ProductMenu";
+import { PageButton } from "./Component/PageButton";
+import { Footer } from "./Component/Footer";
 
 const PAGESIZEBEST = 4;
 const PAGESIZESELLING = 5;
@@ -60,14 +62,16 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="appContainer">
       <NavigationBar></NavigationBar>
       <BestProduct items={Bestitems.list}></BestProduct>
       <div>
-        <ProductMenu handleOrderChange={handleOrderChange}></ProductMenu>
-        <SellingProduct items={Sellingitems.list}></SellingProduct>
-        <SellingProduct items={SellingNextitems.list}></SellingProduct>
+        <ProductMenu handleOrderChange={handleOrderChange} />
+        <SellingProduct items={Sellingitems.list} />
+        <SellingProduct items={SellingNextitems.list} />
       </div>
+      <PageButton />
+      <Footer />
     </div>
   );
 }
