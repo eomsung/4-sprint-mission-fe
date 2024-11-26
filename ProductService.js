@@ -11,7 +11,7 @@ export const getProduct = async (id) => {
     if (!res.ok) {
       throw new Error(`Error: response status is ${res.status}`);
     }
-    return res.json();
+    return await res.json();
   } catch (e) {
     console.log(e.message);
   }
@@ -38,7 +38,7 @@ export const getProductList = async (
     if (!res.ok) {
       throw new Error(`Error: response status is ${res.status}`);
     }
-    return res.json();
+    return await res.json();
   } catch (e) {
     console.log(e.message);
   }
@@ -74,7 +74,7 @@ export const createProduct = async (
     if (!res.ok) {
       throw new Error(`Error: response status is ${res.status}`);
     }
-    return res.json();
+    return await res.json();
   } catch (e) {
     console.log(e.message);
   }
@@ -109,7 +109,7 @@ export const patchProduct = async (
     if (!res.ok) {
       throw new Error(`Error: response status is ${res.status}`);
     }
-    return res.json();
+    return await res.json();
   } catch (e) {
     console.log(e.message);
   }
