@@ -8,11 +8,13 @@ export const SellingProduct = ({ items }) => {
   }
 
   return (
-    <div className="SellingProductSection">
-      <div className="SellingProductList">
-        {items.map((item, index) => (
-          <SellingProductList key={index} item={item}></SellingProductList>
-        ))}
+    <div className="sellingProduct">
+      <div className="SellingProductSection">
+        <div className="SellingProductList">
+          {items.map((item, index) => (
+            <SellingProductList key={index} item={item}></SellingProductList>
+          ))}
+        </div>
       </div>
     </div>
   );

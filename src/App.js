@@ -8,17 +8,15 @@ import { PageButton } from "./Component/PageButton";
 import { Footer } from "./Component/Footer";
 
 const PAGESIZEBEST = 4;
-const PAGESIZESELLING = 5;
+const PAGESIZESELLING = 10;
 const DEFAULTORDER = "recent";
 const FAVORITEORDER = "favorite";
 function App() {
   const [order, setOrder] = useState(DEFAULTORDER);
   const [Bestitems, setBestItems] = useState([]);
   const [Sellingitems, setSellingItems] = useState([]);
-  const [SellingNextitems, setSellingNextItems] = useState([]);
   const [BestPage, setBestPage] = useState(1);
   const [SellingPage, setSellingPage] = useState(1);
-  const [SellingNextPage, setSellingNextPage] = useState(2);
 
   useEffect(() => {
     handleLoadBest({
@@ -29,11 +27,6 @@ function App() {
     handleLoadSelling({
       order: order,
       page: SellingPage,
-      pageSize: PAGESIZESELLING,
-    });
-    handleLoadNextSelling({
-      order: order,
-      page: SellingNextPage,
       pageSize: PAGESIZESELLING,
     });
   }, [order]);
@@ -47,10 +40,6 @@ function App() {
     let data = await getProductList(Options);
     setSellingItems(data);
   };
-  const handleLoadNextSelling = async (Options) => {
-    let data = await getProductList(Options);
-    setSellingNextItems(data);
-  };
 
   const handleOrderChange = (order) => {
     setOrder(order);
@@ -58,7 +47,6 @@ function App() {
 
   const loadNextSellingPage = async () => {
     setSellingPage((prevPage) => prevPage + 2);
-    setSellingNextItems((prevPage) => prevPage + 2);
   };
 
   return (
@@ -68,7 +56,6 @@ function App() {
       <div>
         <ProductMenu handleOrderChange={handleOrderChange} />
         <SellingProduct items={Sellingitems.list} />
-        <SellingProduct items={SellingNextitems.list} />
       </div>
       <PageButton />
       <Footer />
