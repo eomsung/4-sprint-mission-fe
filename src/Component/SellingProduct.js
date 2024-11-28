@@ -4,7 +4,7 @@ import ic_heart from "../img/ic_heart.svg";
 
 export const SellingProduct = ({ items }) => {
   if (!Array.isArray(items) || items.length === 0) {
-    return <div>Not Array</div>;
+    return;
   }
 
   return (
@@ -36,8 +36,7 @@ const SellingProductList = ({ item }) => {
       />
       <div>
         <p className="itemName">{`${item.name} 팝니다`}</p>
-        <p className="itemPrice">{`${item.price}원`}</p>{" "}
-        {/*  여기에 숫자가 커지면 , 넣는거 추가해야함 */}
+        <p className="itemPrice">{`${item.price.toLocaleString("ko-KR")}원`}</p>{" "}
         <span className="favorite">
           <img src={ic_heart} alt="heartIcon" />
           <p className="itemFavorite">{item.favoriteCount}</p>

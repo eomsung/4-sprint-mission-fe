@@ -12,27 +12,30 @@ const PAGESIZEBEST = 4;
 const PAGESIZESELLING = 10;
 const DEFAULTORDER = "recent";
 const FAVORITEORDER = "favorite";
+const DEFAULPAGE = 1;
 function App() {
   const [order, setOrder] = useState(DEFAULTORDER);
   const [Bestitems, setBestItems] = useState([]);
   const [Sellingitems, setSellingItems] = useState([]);
-  const [BestPage, setBestPage] = useState(1);
-  const [SellingPage, setSellingPage] = useState(1);
+  // const [BestPage, setBestPage] = useState(DEFAULPAGE);
+  const [SellingPage, setSellingPage] = useState(DEFAULPAGE);
+  const [keyword, setKeyword] = useState("");
 
   const [loading, error, getProductListAsync] = useAsync(getProductList);
 
   useEffect(() => {
     handleLoadBest({
       order: FAVORITEORDER,
-      page: BestPage,
+      page: DEFAULPAGE,
       pageSize: PAGESIZEBEST,
     });
     handleLoadSelling({
       order: order,
       page: SellingPage,
       pageSize: PAGESIZESELLING,
+      keyword: keyword,
     });
-  }, [order]);
+  }, [order, keyword]);
 
   const handleLoadBest = async (Options) => {
     let data = await getProductListAsync(Options);
@@ -48,8 +51,8 @@ function App() {
     setOrder(order);
   };
 
-  const loadNextSellingPage = async () => {
-    setSellingPage((prevPage) => prevPage + 1);
+  const handleKeywordChange = (keyword) => {
+    setKeyword(keyword);
   };
 
   return (
@@ -57,11 +60,15 @@ function App() {
       <NavigationBar></NavigationBar>
       <BestProduct items={Bestitems.list}></BestProduct>
       <div>
-        <ProductMenu handleOrderChange={handleOrderChange} />
-        <SellingProduct items={Sellingitems.list} />
+        <ProductMenu
+          handleOrderChange={handleOrderChange}
+          handleKeywordChange={handleKeywordChange}
+        />
+        <SellingProduct items={Sellingitems.list} loading={loading} />
       </div>
       <PageButton />
       <Footer />
+      {error?.message && <span>error.message</span>}
     </div>
   );
 }
