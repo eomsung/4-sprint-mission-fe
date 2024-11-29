@@ -18,7 +18,6 @@ export const ProductMenu = ({
     e.preventDefault();
     console.log(value);
     handleKeywordChange(value);
-    // console.log(e.target.value);
   };
 
   return (

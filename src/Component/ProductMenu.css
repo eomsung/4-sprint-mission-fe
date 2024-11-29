@@ -7,6 +7,7 @@
   justify-content: space-between;
   width: 120rem;
 }
+
 .menu {
   display: flex;
   gap: 1rem;
@@ -53,4 +54,19 @@ h3 {
   position: absolute;
   left: 1.6rem;
   border: none;
+}
+
+@media screen and (min-width: 744px) and (max-width: 1199px) {
+  .menuContainer {
+    width: 69.5rem;
+  }
+  .menuInput {
+    width: 24.2rem;
+  }
+}
+
+@media screen and (min-width: 375px) and (max-width: 743px) {
+  .SellingProductSection {
+    max-width: 34.4rem;
+  }
 }

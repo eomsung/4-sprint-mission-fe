@@ -38,3 +38,14 @@
 .login {
   height: 4.2rem;
 }
+@media screen and (min-width: 744px) and (max-width: 1199px) {
+  .NavigationBar {
+    padding: 4rem;
+  }
+}
+
+@media screen and (min-width: 375px) and (max-width: 743px) {
+  .NavigationBar {
+    padding: 0;
+  }
+}

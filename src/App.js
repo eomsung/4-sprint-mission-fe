@@ -7,6 +7,7 @@ import { ProductMenu } from "./Component/ProductMenu";
 import { PageButton } from "./Component/PageButton";
 import { Footer } from "./Component/Footer";
 import { useAsync } from "../src/hook/useAsync";
+import { useDeviceSize } from "./hook/useDeviceSize";
 
 const PAGESIZEBEST = 4;
 const PAGESIZESELLING = 10;
@@ -16,26 +17,43 @@ const DEFAULPAGE = 1;
 function App() {
   const [order, setOrder] = useState(DEFAULTORDER);
   const [Bestitems, setBestItems] = useState([]);
-  const [Sellingitems, setSellingItems] = useState([]);
+  const [sellingitems, setSellingItems] = useState([]);
   // const [BestPage, setBestPage] = useState(DEFAULPAGE);
-  const [SellingPage, setSellingPage] = useState(DEFAULPAGE);
+  const [sellingPage, setSellingPage] = useState(DEFAULPAGE);
   const [keyword, setKeyword] = useState("");
-
+  const [bestPageSize, setBestPageSize] = useState(PAGESIZEBEST);
+  const [sellingPageSize, setSellingPageSize] = useState(PAGESIZESELLING);
   const [loading, error, getProductListAsync] = useAsync(getProductList);
+  const { isDesktop, isTablet, isMobile } = useDeviceSize();
+  useEffect(() => {
+    if (isDesktop) {
+      setBestPageSize(4);
+      setSellingPageSize(10);
+    } else if (isTablet) {
+      setBestPageSize(2);
+      setSellingPageSize(6);
+    } else if (isMobile) {
+      setBestPageSize(1);
+      setSellingPageSize(4);
+    }
+  }, [isDesktop, isTablet, isMobile]); // 모바일일때가 잘 안되는중
 
   useEffect(() => {
     handleLoadBest({
       order: FAVORITEORDER,
       page: DEFAULPAGE,
-      pageSize: PAGESIZEBEST,
+      pageSize: bestPageSize,
     });
+  }, [bestPageSize]);
+
+  useEffect(() => {
     handleLoadSelling({
       order: order,
-      page: SellingPage,
-      pageSize: PAGESIZESELLING,
+      page: sellingPage,
+      pageSize: sellingPageSize,
       keyword: keyword,
     });
-  }, [order, keyword]);
+  }, [order, keyword, sellingPageSize]);
 
   const handleLoadBest = async (Options) => {
     let data = await getProductListAsync(Options);
@@ -64,7 +82,7 @@ function App() {
           handleOrderChange={handleOrderChange}
           handleKeywordChange={handleKeywordChange}
         />
-        <SellingProduct items={Sellingitems.list} loading={loading} />
+        <SellingProduct items={sellingitems.list} loading={loading} />
       </div>
       <PageButton />
       <Footer />
