@@ -34,26 +34,44 @@
   padding: 1.2rem 2.3rem;
   text-decoration: none;
   box-sizing: border-box;
+  visibility: visible;
 }
 .login {
   height: 4.2rem;
+}
+
+@media screen and (min-width: 1200px) {
 }
 
 @media screen and (min-width: 744px) and (max-width: 1199px) {
   .NavigationBar {
     padding: 4rem;
   }
-  /* .button {
+
+  .user {
+    background-color: unset;
     background-image: url(../img/ic_user.svg);
     background-repeat: no-repeat;
     background-size: cover;
     width: 4rem;
-    height: 4em;
-  } */
+    height: 4rem;
+    visibility: visible;
+    color: transparent;
+  }
 }
 
 @media screen and (min-width: 375px) and (max-width: 743px) {
   .NavigationBar {
     padding: 0;
+  }
+  .user {
+    background-color: unset;
+    background-image: url(../img/ic_user.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 4rem;
+    height: 4rem;
+    visibility: visible;
+    color: transparent;
   }
 }

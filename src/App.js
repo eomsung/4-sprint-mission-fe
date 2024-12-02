@@ -9,8 +9,6 @@ import { Footer } from "./Component/Footer";
 import { useAsync } from "../src/hook/useAsync";
 import { useDeviceSize } from "./hook/useDeviceSize";
 
-const PAGESIZEBEST = 4;
-const PAGESIZESELLING = 10;
 const DEFAULTORDER = "recent";
 const FAVORITEORDER = "favorite";
 const DEFAULPAGE = 1;
@@ -21,39 +19,31 @@ function App() {
   // const [BestPage, setBestPage] = useState(DEFAULPAGE);
   const [sellingPage, setSellingPage] = useState(DEFAULPAGE);
   const [keyword, setKeyword] = useState("");
-  const [bestPageSize, setBestPageSize] = useState(PAGESIZEBEST);
-  const [sellingPageSize, setSellingPageSize] = useState(PAGESIZESELLING);
   const [loading, error, getProductListAsync] = useAsync(getProductList);
   const { isDesktop, isTablet, isMobile } = useDeviceSize();
-  useEffect(() => {
-    if (isDesktop) {
-      setBestPageSize(4);
-      setSellingPageSize(10);
-    } else if (isTablet) {
-      setBestPageSize(2);
-      setSellingPageSize(6);
-    } else if (isMobile) {
-      setBestPageSize(1);
-      setSellingPageSize(4);
-    }
-  }, [isDesktop, isTablet, isMobile]); // 모바일일때가 잘 안되는중
+
+  const getPageSize = () => (isDesktop ? 10 : isTablet ? 6 : isMobile ? 4 : 1);
+  const getBestPageSize = () =>
+    isDesktop ? 4 : isTablet ? 2 : isMobile ? 1 : 1;
 
   useEffect(() => {
+    let bestPageSize = getBestPageSize();
     handleLoadBest({
       order: FAVORITEORDER,
       page: DEFAULPAGE,
       pageSize: bestPageSize,
     });
-  }, [bestPageSize]);
+  }, [isDesktop, isTablet, isMobile]);
 
   useEffect(() => {
+    let pageSize = getPageSize();
     handleLoadSelling({
       order: order,
       page: sellingPage,
-      pageSize: sellingPageSize,
+      pageSize: pageSize,
       keyword: keyword,
     });
-  }, [order, keyword, sellingPageSize]);
+  }, [order, keyword, isDesktop, isTablet, isMobile]);
 
   const handleLoadBest = async (Options) => {
     let data = await getProductListAsync(Options);

@@ -66,7 +66,22 @@ h3 {
 }
 
 @media screen and (min-width: 375px) and (max-width: 743px) {
+  .menu {
+    flex-direction: column;
+  }
   .menuContainer {
     width: 34.4rem;
+    flex-direction: column;
+  }
+  .menuInput {
+    width: 100%;
+  }
+  .register,
+  .orderSelect {
+    width: 100%;
+  }
+
+  .inputWrapper {
+    width: 100%;
   }
 }
