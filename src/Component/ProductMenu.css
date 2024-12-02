@@ -68,6 +68,7 @@ h3 {
 @media screen and (min-width: 375px) and (max-width: 743px) {
   .menu {
     flex-direction: column;
+    margin-bottom: 3rem;
   }
   .menuContainer {
     width: 34.4rem;

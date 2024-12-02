@@ -16,15 +16,14 @@ function App() {
   const [order, setOrder] = useState(DEFAULTORDER);
   const [Bestitems, setBestItems] = useState([]);
   const [sellingitems, setSellingItems] = useState([]);
-  // const [BestPage, setBestPage] = useState(DEFAULPAGE);
   const [sellingPage, setSellingPage] = useState(DEFAULPAGE);
   const [keyword, setKeyword] = useState("");
+  const [maxPage, setMaxPage] = useState(1);
   const [loading, error, getProductListAsync] = useAsync(getProductList);
   const { isDesktop, isTablet, isMobile } = useDeviceSize();
 
-  const getPageSize = () => (isDesktop ? 10 : isTablet ? 6 : isMobile ? 4 : 1);
-  const getBestPageSize = () =>
-    isDesktop ? 4 : isTablet ? 2 : isMobile ? 1 : 1;
+  const getPageSize = () => (isDesktop ? 10 : isTablet ? 6 : 4);
+  const getBestPageSize = () => (isDesktop ? 4 : isTablet ? 2 : 1);
 
   useEffect(() => {
     let bestPageSize = getBestPageSize();
@@ -37,13 +36,23 @@ function App() {
 
   useEffect(() => {
     let pageSize = getPageSize();
+    setMaxPage(Math.ceil(sellingitems.totalCount / pageSize) || 1);
+    console.log(maxPage);
     handleLoadSelling({
       order: order,
       page: sellingPage,
       pageSize: pageSize,
       keyword: keyword,
     });
-  }, [order, keyword, isDesktop, isTablet, isMobile]);
+  }, [
+    order,
+    keyword,
+    isDesktop,
+    isTablet,
+    isMobile,
+    sellingPage,
+    sellingitems.totalCount,
+  ]);
 
   const handleLoadBest = async (Options) => {
     let data = await getProductListAsync(Options);
@@ -55,26 +64,22 @@ function App() {
     setSellingItems(data);
   };
 
-  const handleOrderChange = (order) => {
-    setOrder(order);
-  };
-
-  const handleKeywordChange = (keyword) => {
-    setKeyword(keyword);
-  };
-
   return (
     <div>
       <NavigationBar></NavigationBar>
       <BestProduct items={Bestitems.list}></BestProduct>
       <div>
         <ProductMenu
-          handleOrderChange={handleOrderChange}
-          handleKeywordChange={handleKeywordChange}
+          handleOrderChange={setOrder}
+          handleKeywordChange={setKeyword}
         />
         <SellingProduct items={sellingitems.list} loading={loading} />
       </div>
-      <PageButton />
+      <PageButton
+        currentPage={sellingPage}
+        handleSellingPage={setSellingPage}
+        maxPage={maxPage}
+      />
       <Footer />
       {error?.message && <span>error.message</span>}
     </div>
