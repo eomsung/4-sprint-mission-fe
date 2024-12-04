@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./ProductMenu.css";
+import { Link } from "react-router-dom";
 export const ProductMenu = ({
   handleOrderChange,
   handleKeywordChange,
@@ -36,7 +37,9 @@ export const ProductMenu = ({
               />
               <button type="submit" className="menuButton" />
             </form>
-            <a className="register button">상품 등록하기</a>
+            <Link to="../registration" className="register button">
+              상품 등록하기
+            </Link>
             <select
               disabled={loading}
               className="orderSelect"

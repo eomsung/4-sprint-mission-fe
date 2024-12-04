@@ -1,4 +1,5 @@
 const BASE_URL = "https://panda-market-api.vercel.app/products";
+
 export const getProductList = async ({
   page = 1,
   pageSize = 100,

@@ -1,5 +1,6 @@
 import ItemsPage from "./page/ItemsPage";
 import MainPage from "./page/MainPage";
+import { RegistrationPage } from "./page/RegistrationPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
@@ -7,7 +8,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<MainPage />} />
-        {/* <Route path="/" element={<ItemsPage />} /> */}
+        <Route path="items" element={<ItemsPage />} />
+        <Route path="registration" element={<RegistrationPage />} />
       </Routes>
     </BrowserRouter>
   );

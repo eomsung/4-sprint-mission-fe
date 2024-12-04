@@ -10,11 +10,11 @@ import { useAsync } from "../hook/useAsync";
 import { useDeviceSize } from "../hook/useDeviceSize";
 
 const DEFAULTORDER = "recent";
-const FAVORITEORDER = "favorite";
+// const FAVORITEORDER = "favorite";
 const DEFAULPAGE = 1;
 function ItemsPage() {
   const [order, setOrder] = useState(DEFAULTORDER);
-  const [Bestitems, setBestItems] = useState([]);
+  // const [Bestitems, setBestItems] = useState([]);
   const [sellingitems, setSellingItems] = useState([]);
   const [sellingPage, setSellingPage] = useState(DEFAULPAGE);
   const [keyword, setKeyword] = useState("");
@@ -23,16 +23,16 @@ function ItemsPage() {
   const { isDesktop, isTablet, isMobile } = useDeviceSize();
 
   const getPageSize = () => (isDesktop ? 10 : isTablet ? 6 : 4);
-  const getBestPageSize = () => (isDesktop ? 4 : isTablet ? 2 : 1);
+  // const getBestPageSize = () => (isDesktop ? 4 : isTablet ? 2 : 1);
 
-  useEffect(() => {
-    let bestPageSize = getBestPageSize();
-    handleLoadBest({
-      order: FAVORITEORDER,
-      page: DEFAULPAGE,
-      pageSize: bestPageSize,
-    });
-  }, [isDesktop, isTablet, isMobile]);
+  // useEffect(() => {
+  //   let bestPageSize = getBestPageSize();
+  //   handleLoadBest({
+  //     order: FAVORITEORDER,
+  //     page: DEFAULPAGE,
+  //     pageSize: bestPageSize,
+  //   });
+  // }, [isDesktop, isTablet, isMobile]);
 
   useEffect(() => {
     let pageSize = getPageSize();
@@ -54,10 +54,10 @@ function ItemsPage() {
     sellingitems.totalCount,
   ]);
 
-  const handleLoadBest = async (Options) => {
-    let data = await getProductListAsync(Options);
-    setBestItems(data);
-  };
+  // const handleLoadBest = async (Options) => {
+  //   let data = await getProductListAsync(Options);
+  //   setBestItems(data);
+  // };
 
   const handleLoadSelling = async (Options) => {
     let data = await getProductListAsync(Options);
@@ -67,7 +67,6 @@ function ItemsPage() {
   return (
     <div>
       <NavigationBar></NavigationBar>
-      <BestProduct items={Bestitems.list}></BestProduct>
       <div>
         <ProductMenu
           handleOrderChange={setOrder}
