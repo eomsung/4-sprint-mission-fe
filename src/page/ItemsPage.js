@@ -14,7 +14,7 @@ const DEFAULTORDER = "recent";
 const DEFAULPAGE = 1;
 function ItemsPage() {
   const [order, setOrder] = useState(DEFAULTORDER);
-  // const [Bestitems, setBestItems] = useState([]);
+  // const [bestitems, setBestItems] = useState([]);
   const [sellingitems, setSellingItems] = useState([]);
   const [sellingPage, setSellingPage] = useState(DEFAULPAGE);
   const [keyword, setKeyword] = useState("");

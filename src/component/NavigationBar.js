@@ -1,9 +1,17 @@
 import pandaImage from "../img/panda.svg";
 import "./NavigationBar.css";
 import "../Global.css";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export const NavigationBar = ({ showMenu = true }) => {
+  const getLinkStyle = ({ isActive }) => {
+    return {
+      color: isActive
+        ? "var(--button-active-color)"
+        : "var(--favorite-text-color)",
+    };
+  };
+
   return (
     <nav className="NavigationBar">
       <div className="NavigationMenu">
@@ -12,7 +20,10 @@ export const NavigationBar = ({ showMenu = true }) => {
         </Link>
         {showMenu && (
           <>
-            <div> 자유게시판 </div> <div> 중고마켓</div>
+            <NavLink>자유게시판</NavLink>
+            <NavLink to="/items" style={getLinkStyle}>
+              중고마켓
+            </NavLink>
           </>
         )}
       </div>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./RegistrationInput.css";
+import { useAsync } from "../hook/useAsync";
 
 const INITAIL_FORMDATA = {
   name: "",
@@ -8,10 +9,12 @@ const INITAIL_FORMDATA = {
   tag: "",
 };
 
-export const RegistrationInput = () => {
+export const RegistrationInput = ({ onSubmit }) => {
   const [isActive, setIsActive] = useState(false);
   const [formData, setFormData] = useState(INITAIL_FORMDATA);
   const [invalidMessage, setInvalidMessage] = useState(INITAIL_FORMDATA);
+
+  const [loading, error, onSubmitAsync] = useAsync(onSubmit);
 
   useEffect(() => {
     isValid();
@@ -97,12 +100,28 @@ export const RegistrationInput = () => {
     setInvalidMessage(newMessage);
   };
 
+  // const reset = () => {
+  //   setFormData(INITAIL_FORMDATA);
+  //   setInvalidMessage(INITAIL_FORMDATA);
+  // }; 아직 이게 필요할지 잘 모르지만 까먹을거 같아서 작성
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const newFormdata = { ...formData };
+    const result = await onSubmitAsync(newFormdata);
+    //만약에 result가 성공적이면 페이지 이동 코드 추가 작성하기
+  };
+
   return (
     <div className="registrationSection">
       <form className="registrationContainer">
         <div className="buttonSection">
           상품등록하기
-          <button disabled={!isActive} className="button">
+          <button
+            disabled={!isActive && loading}
+            className="button"
+            onClick={handleSubmit}
+          >
             등록
           </button>
         </div>
@@ -110,7 +129,7 @@ export const RegistrationInput = () => {
           <div>
             <p>상품명</p>
             <input
-              className="menuInput"
+              className={`menuInput ${invalidMessage.name ? "red" : ""}`}
               placeholder="상품명을 입력해주세요"
               name="name"
               value={formData.name}
@@ -124,7 +143,9 @@ export const RegistrationInput = () => {
           <div>
             <p>상품 소개</p>
             <textarea
-              className="menuInput textarea"
+              className={`menuInput textarea ${
+                invalidMessage.description ? "red" : ""
+              }`}
               placeholder="상품 소개를 입력해주세요"
               name="description"
               value={formData.description}
@@ -138,7 +159,7 @@ export const RegistrationInput = () => {
           <div>
             <p>판매가격</p>
             <input
-              className="menuInput"
+              className={`menuInput ${invalidMessage.price ? "red" : ""}`}
               placeholder="판매 가격을 입력해주세요"
               name="price"
               value={formData.price}
@@ -150,7 +171,7 @@ export const RegistrationInput = () => {
           <div>
             <p>태그</p>
             <input
-              className="menuInput"
+              className={`menuInput ${invalidMessage.tag ? "red" : ""}`}
               placeholder="태그를 입력해주세요"
               name="tag"
               value={formData.tag}
@@ -160,6 +181,7 @@ export const RegistrationInput = () => {
             <p className="errorMessage">{invalidMessage.tag}</p>
           </div>
         </div>
+        {error?.message && <div>{error.message}</div>}
       </form>
     </div>
   );

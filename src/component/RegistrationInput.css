@@ -57,6 +57,14 @@
   font-size: 1.4rem;
   margin-left: 1rem;
 }
+.menuInput.red {
+  border: 0.1rem solid var(--invalid-message-color);
+}
+
+.menuInput:focus {
+  outline: none;
+  border: 0.1rem solid var(--button-active-color);
+}
 
 @media screen and (min-width: 744px) and (max-width: 1199px) {
   .registrationContainer {

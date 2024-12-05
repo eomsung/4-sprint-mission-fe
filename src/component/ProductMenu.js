@@ -37,7 +37,7 @@ export const ProductMenu = ({
               />
               <button type="submit" className="menuButton" />
             </form>
-            <Link to="../registration" className="register button">
+            <Link to="/registration" className="register button">
               상품 등록하기
             </Link>
             <select
