@@ -8,6 +8,10 @@ const INITAIL_FORMDATA = {
   price: "",
   tag: "",
 };
+//tags도 하나 만들까? [] 이걸로 만들어서 유효성검사를 다시 해볼까?
+//tag를 onchange관련했을때는 글자수 체크하고 엔터 눌렀을때 tag가 될수있는지 체크
+//만약 ok이면 tag="" 으로 바꾸고 tags에 추가
+//tags에 값이 없으면 버튼 클릭 불가능
 
 export const RegistrationInput = ({ onSubmit }) => {
   const [isActive, setIsActive] = useState(false);

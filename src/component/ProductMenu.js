@@ -17,7 +17,6 @@ export const ProductMenu = ({
   };
   const handleButton = (e) => {
     e.preventDefault();
-    console.log(value);
     handleKeywordChange(value);
   };
 

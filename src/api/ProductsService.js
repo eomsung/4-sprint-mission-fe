@@ -1,4 +1,5 @@
-const BASE_URL = "https://panda-market-api.vercel.app/products";
+// const BASE_URL = "https://panda-market-api.vercel.app/products";
+const BASE_URL = "https://four-sprint-mission-be-cfjg.onrender.com/products";
 
 export const getProductList = async ({
   page = 1,

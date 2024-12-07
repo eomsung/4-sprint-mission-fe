@@ -15,7 +15,10 @@ const DEFAULPAGE = 1;
 function ItemsPage() {
   const [order, setOrder] = useState(DEFAULTORDER);
   // const [bestitems, setBestItems] = useState([]);
-  const [sellingitems, setSellingItems] = useState([]);
+  const [sellingitems, setSellingItems] = useState({
+    list: [],
+    totalCount: 10,
+  });
   const [sellingPage, setSellingPage] = useState(DEFAULPAGE);
   const [keyword, setKeyword] = useState("");
   const [maxPage, setMaxPage] = useState(1);
@@ -37,7 +40,6 @@ function ItemsPage() {
   useEffect(() => {
     let pageSize = getPageSize();
     setMaxPage(Math.ceil(sellingitems.totalCount / pageSize) || 1);
-    console.log(maxPage);
     handleLoadSelling({
       order: order,
       page: sellingPage,
@@ -61,7 +63,7 @@ function ItemsPage() {
 
   const handleLoadSelling = async (Options) => {
     let data = await getProductListAsync(Options);
-    setSellingItems(data);
+    setSellingItems(data || { list: [], totalCount: 10 });
   };
 
   return (
