@@ -11,10 +11,6 @@ const INITAIL_FORMDATA = {
   tag: "",
   tags: [],
 };
-//tags도 하나 만들까? [] 이걸로 만들어서 유효성검사를 다시 해볼까?
-//tag를 onchange관련했을때는 글자수 체크하고 엔터 눌렀을때 tag가 될수있는지 체크
-//만약 ok이면 tag="" 으로 바꾸고 tags에 추가
-//tags에 값이 없으면 버튼 클릭 불가능 t
 
 export const RegistrationInput = ({ onSubmit }) => {
   const [isActive, setIsActive] = useState(false);
@@ -104,17 +100,11 @@ export const RegistrationInput = ({ onSubmit }) => {
     }
     if (formData.tags.length === 0) {
       vaild = false;
-      // newMessage.tag = "tag를 입력해주세요";
     }
 
     setIsActive(vaild);
     setInvalidMessage(newMessage);
   };
-
-  // const reset = () => {
-  //   setFormData(INITAIL_FORMDATA);
-  //   setInvalidMessage(INITAIL_FORMDATA);
-  // }; 아직 이게 필요할지 잘 모르지만 까먹을거 같아서 작성
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -136,12 +126,8 @@ export const RegistrationInput = ({ onSubmit }) => {
         tags: [...prev.tags, formData.tag],
         tag: "",
       }));
-      // setInvalidMessage((prev) => ({
-      //   ...prev,
-      //   tag: "",
-      // }));
     }
-  }; //여기에 에러메시지 없애는거 추가
+  };
 
   const handleTagDelte = (index) => {
     setFormData((prev) => ({
@@ -156,7 +142,6 @@ export const RegistrationInput = ({ onSubmit }) => {
         <div className="buttonSection">
           상품등록하기
           <button
-            // disabled={!isActive}
             disabled={!isActive || loading}
             className="button"
             onClick={handleSubmit}
