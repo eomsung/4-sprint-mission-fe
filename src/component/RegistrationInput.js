@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import "./RegistrationInput.css";
 import { useAsync } from "../hook/useAsync";
+import ic_X from "../img/ic_X.svg";
 
 const INITAIL_FORMDATA = {
   name: "",
   description: "",
   price: "",
   tag: "",
+  tags: [],
 };
 //tags도 하나 만들까? [] 이걸로 만들어서 유효성검사를 다시 해볼까?
 //tag를 onchange관련했을때는 글자수 체크하고 엔터 눌렀을때 tag가 될수있는지 체크
@@ -35,7 +37,7 @@ export const RegistrationInput = ({ onSubmit }) => {
   const handleBlur = (e) => {
     // 글자가 없거나 모자르게 입력했는데 blur 했을때 함수
     const { name, value } = e.target;
-    if (name === "name" || name === "tag") {
+    if (name === "name") {
       if (value.length === 0) {
         setInvalidMessage((prev) => ({
           ...prev,
@@ -95,9 +97,12 @@ export const RegistrationInput = ({ onSubmit }) => {
       if (formData.tag.length > 5) {
         newMessage.tag = "5자 이내로 입력해주세요";
       }
-      vaild = false;
     } else {
       newMessage.tag = "";
+    }
+    if (formData.tags.length === 0) {
+      vaild = false;
+      // newMessage.tag = "tag를 입력해주세요";
     }
 
     setIsActive(vaild);
@@ -116,13 +121,38 @@ export const RegistrationInput = ({ onSubmit }) => {
     //만약에 result가 성공적이면 페이지 이동 코드 추가 작성하기
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      if (formData.tag.length < 1 || formData.tag.length > 5) {
+        return;
+      }
+      setFormData((prev) => ({
+        ...prev,
+        tags: [...prev.tags, formData.tag],
+        tag: "",
+      }));
+      // setInvalidMessage((prev) => ({
+      //   ...prev,
+      //   tag: "",
+      // }));
+    }
+  }; //여기에 에러메시지 없애는거 추가
+
+  const handleTagDelte = (index) => {
+    setFormData((prev) => ({
+      ...prev,
+      tags: prev.tags.filter((_, i) => i !== index),
+    }));
+  };
+
   return (
     <div className="registrationSection">
       <form className="registrationContainer">
         <div className="buttonSection">
           상품등록하기
           <button
-            disabled={!isActive && loading}
+            // disabled={!isActive}
+            disabled={!isActive && !loading}
             className="button"
             onClick={handleSubmit}
           >
@@ -181,8 +211,24 @@ export const RegistrationInput = ({ onSubmit }) => {
               value={formData.tag}
               onChange={handleValueChange}
               onBlur={handleBlur}
+              onKeyDown={handleKeyDown}
             ></input>
             <p className="errorMessage">{invalidMessage.tag}</p>
+            <div className="tagBox">
+              {formData.tags.map((tag, index) => (
+                <p key={index} className="tag">
+                  #{tag}
+                  <img
+                    src={ic_X}
+                    alt="deltebutton"
+                    className="delteButton"
+                    onClick={() => {
+                      handleTagDelte(index);
+                    }}
+                  />
+                </p>
+              ))}
+            </div>
           </div>
         </div>
         {error?.message && <div>{error.message}</div>}

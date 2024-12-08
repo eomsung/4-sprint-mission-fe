@@ -66,6 +66,24 @@
   border: 0.1rem solid var(--button-active-color);
 }
 
+.tagBox {
+  display: flex;
+  gap: 1rem;
+}
+.tag {
+  border-radius: 2.6rem;
+  height: 3.6rem;
+  background-color: var(--Menu-input-color);
+  padding: 0.6rem 1.2rem 0.6rem 1.6rem;
+  display: flex;
+  align-items: center;
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+.delteButton {
+  padding-left: 0.4rem;
+}
+
 @media screen and (min-width: 744px) and (max-width: 1199px) {
   .registrationContainer {
     width: 69.6rem;
