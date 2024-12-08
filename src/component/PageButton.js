@@ -25,6 +25,7 @@ export const PageButton = ({ currentPage, handleSellingPage, maxPage }) => {
         const page = startPage + index;
         return (
           <button
+            key={page}
             className={`PageButton ${page === currentPage ? "isactive" : ""}`}
             onClick={() => handlePageChange(page)}
           >

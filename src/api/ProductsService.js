@@ -1,5 +1,5 @@
 // const BASE_URL = "https://panda-market-api.vercel.app/products";
-const BASE_URL = "https://four-sprint-mission-be-cfjg.onrender.com/products";
+const BASE_URL = "https://four-sprint-mission-be-cfjg.onrender.com";
 
 export const getProductList = async ({
   page = 1,
@@ -15,7 +15,7 @@ export const getProductList = async ({
       throw new Error("Invalid pageSize");
     }
     const res = await fetch(
-      `${BASE_URL}?page=${page}&pageSize=${pageSize}&keyword=${keyword}&orderBy=${order}`,
+      `${BASE_URL}/products?page=${page}&pageSize=${pageSize}&keyword=${keyword}&orderBy=${order}`,
       {
         method: "GET",
       }
@@ -29,12 +29,12 @@ export const getProductList = async ({
   }
 };
 
-export const createProduct = async (name, description, price, tags) => {
+export const createProduct = async ({ name, description, price, tags }) => {
   try {
     if (!Array.isArray(tags)) {
       throw new Error("Invalid tags");
     }
-    const res = await fetch(BASE_URL, {
+    const res = await fetch(`${BASE_URL}/products`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

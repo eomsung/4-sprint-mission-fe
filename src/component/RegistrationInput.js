@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./RegistrationInput.css";
 import { useAsync } from "../hook/useAsync";
 import ic_X from "../img/ic_X.svg";
+import { useNavigate } from "react-router-dom";
 
 const INITAIL_FORMDATA = {
   name: "",
@@ -22,6 +23,7 @@ export const RegistrationInput = ({ onSubmit }) => {
 
   const [loading, error, onSubmitAsync] = useAsync(onSubmit);
 
+  const navigate = useNavigate();
   useEffect(() => {
     isValid();
   }, [formData]);
@@ -87,7 +89,7 @@ export const RegistrationInput = ({ onSubmit }) => {
         !Number.isInteger(Number(formData.price)) &&
         formData.price.length !== 0
       ) {
-        newMessage.price = "숫자를 입력해주세요 test";
+        newMessage.price = "숫자를 입력해주세요";
       }
       vaild = false;
     } else {
@@ -118,7 +120,10 @@ export const RegistrationInput = ({ onSubmit }) => {
     e.preventDefault();
     const newFormdata = { ...formData };
     const result = await onSubmitAsync(newFormdata);
-    //만약에 result가 성공적이면 페이지 이동 코드 추가 작성하기
+    if (result) {
+      navigate("/Product");
+      return;
+    }
   };
 
   const handleKeyDown = (e) => {
@@ -152,7 +157,7 @@ export const RegistrationInput = ({ onSubmit }) => {
           상품등록하기
           <button
             // disabled={!isActive}
-            disabled={!isActive && !loading}
+            disabled={!isActive || loading}
             className="button"
             onClick={handleSubmit}
           >
