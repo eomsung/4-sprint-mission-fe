@@ -17,7 +17,7 @@ function ItemsPage() {
   // const [bestitems, setBestItems] = useState([]);
   const [sellingitems, setSellingItems] = useState({
     list: [],
-    totalCount: 10,
+    totalCount: 1,
   });
   const [sellingPage, setSellingPage] = useState(DEFAULPAGE);
   const [keyword, setKeyword] = useState("");
@@ -63,7 +63,7 @@ function ItemsPage() {
 
   const handleLoadSelling = async (Options) => {
     let data = await getProductListAsync(Options);
-    setSellingItems(data || { list: [], totalCount: 10 });
+    setSellingItems(data || { list: [], totalCount: 1 });
   };
 
   return (
