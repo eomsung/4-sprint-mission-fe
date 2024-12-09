@@ -150,7 +150,7 @@ export const RegistrationInput = ({ onSubmit }) => {
           </button>
         </div>
         <div className="inputContainer">
-          <div>
+          <div className="inputwraper">
             <p>상품명</p>
             <input
               className={`menuInput ${invalidMessage.name ? "red" : ""}`}
@@ -164,7 +164,7 @@ export const RegistrationInput = ({ onSubmit }) => {
               <p className="errorMessage">{invalidMessage.name}</p>
             )}
           </div>
-          <div>
+          <div className="inputwraper">
             <p>상품 소개</p>
             <textarea
               className={`menuInput textarea ${
@@ -180,7 +180,7 @@ export const RegistrationInput = ({ onSubmit }) => {
               <p className="errorMessage">{invalidMessage.description}</p>
             )}
           </div>
-          <div>
+          <div className="inputwraper">
             <p>판매가격</p>
             <input
               className={`menuInput ${invalidMessage.price ? "red" : ""}`}
@@ -192,7 +192,7 @@ export const RegistrationInput = ({ onSubmit }) => {
             ></input>
             <p className="errorMessage">{invalidMessage.price}</p>
           </div>
-          <div>
+          <div className="inputwraper">
             <p>태그</p>
             <input
               className={`menuInput ${invalidMessage.tag ? "red" : ""}`}
