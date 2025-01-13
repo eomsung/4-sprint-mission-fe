@@ -5,6 +5,7 @@ import Image from "next/image";
 import defualtImage from "@/assets/svg/img_default.svg";
 import heart from "@/assets/svg/ic_heart.svg";
 import medal from "@/assets/svg/ic_medal.svg";
+import Link from "next/link";
 
 const NUMBER = 3;
 function BestArticles({ data }) {
@@ -12,7 +13,11 @@ function BestArticles({ data }) {
   return (
     <div className="flex gap-6">
       {BestArticlesData.map((article) => {
-        return <BestArticle key={article.id} article={article}></BestArticle>;
+        return (
+          <Link key={article.id} href={`/freeBoard/${article.id}`}>
+            <BestArticle key={article.id} article={article}></BestArticle>
+          </Link>
+        );
       })}
     </div>
   );

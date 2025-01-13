@@ -7,11 +7,11 @@ import Articles from "./_components/Articles";
 import Button from "@/components/Button";
 
 async function freeBorad({ searchParams }) {
-  const bestArticles = await api.getArticle();
+  const bestArticles = await api.getArticles();
   const queryParams = await searchParams;
   const keyword = queryParams?.keyword || "";
 
-  const articles = await api.getArticle(keyword);
+  const articles = await api.getArticles(keyword);
 
   return (
     <div className="flex flex-col items-center gap-10 w-[1200px] m-auto">

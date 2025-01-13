@@ -9,7 +9,7 @@ function Button({ children, color = "blue", className, ...props }) {
   return (
     <button
       className={clsx(
-        "flex items-center justify-center",
+        "flex items-center justify-center whitespace-nowrap",
         className,
         buttonColor
       )}
