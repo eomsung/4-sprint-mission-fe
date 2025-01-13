@@ -10,7 +10,7 @@ function Header() {
   const pathName = usePathname();
   const showMenu = pathName === "/" ? false : true;
   return (
-    <header className="flex justify-between items-center  w-full min-w-max h-[70px] px-[200px] border-b border-[#DFDFDF] sticky box-border top-0 z-10">
+    <header className="flex justify-between items-center  w-full min-w-max h-[70px] px-[200px] border-b border-[#DFDFDF] sticky box-border top-0 z-10 bg-white">
       <div className="flex items-center  text-nowrap">
         <Link className="mr-4 " href="/">
           <Image

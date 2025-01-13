@@ -6,8 +6,8 @@ const client = axios.create({
   baseURL,
 });
 
-const getArticle = async () => {
-  const url = "/article";
+const getArticle = async (keyword = "", order = "recent") => {
+  const url = `/article?keyword=${keyword}&orderBy=${order}`;
   const response = await client.get(url);
   const data = response.data;
   return data;
