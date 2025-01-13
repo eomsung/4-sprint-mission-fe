@@ -1,9 +1,10 @@
 import clsx from "clsx";
 import React from "react";
 
-function Button({ children, color = "blue", className, ...props }) {
+function Button({ children, isActive = "active", className, ...props }) {
   const buttonColor = clsx({
-    "bg-Blue text-white": color === "blue",
+    "bg-Blue text-white": isActive === "active",
+    "bg-[#9CA3AF] text-white": isActive === "inactive",
   });
 
   return (

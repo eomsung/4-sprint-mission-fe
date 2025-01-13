@@ -8,13 +8,23 @@ function ArticleComments() {
   const params = useParams();
   const articleId = params.articleId;
   const router = useRouter();
+  const [disabled, setDisabled] = useState(true);
+  const [isActive, setIsActive] = useState("inactive");
+  useEffect(() => {
+    if (comment === "") {
+      setDisabled(true);
+      setIsActive("inactive");
+    } else {
+      setDisabled(false);
+      setIsActive("active");
+    }
+  }, [comment]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await api.createComment(articleId, comment);
-      // console.log(response);
-      // location.reload();
+      // console.log(response)
       router.refresh();
     } catch (error) {
       console.error(error);
@@ -33,7 +43,11 @@ function ArticleComments() {
             value={comment}
             onChange={(e) => setComment(e.target.value)}
           ></textarea>
-          <Button className="self-end w-[74px] h-[42px] px-[23px] py-3 box-border rounded-lg">
+          <Button
+            className="self-end w-[74px] h-[42px] px-[23px] py-3 box-border rounded-lg"
+            disabled={disabled}
+            isActive={isActive}
+          >
             등록
           </Button>
         </form>

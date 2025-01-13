@@ -1,19 +1,31 @@
 import React from "react";
 import Image from "next/image";
 import profile from "@/assets/svg/ic_profile.svg";
+import empty from "@/assets/svg/Img_empty.svg";
 
 function ArticleComments({ comments }) {
   // const ArticlesData = data.slice(0, NUMBER);
+  const existComments = comments.length !== 0;
   return (
-    <div className="flex flex-col w-full gap-10">
-      {comments.map((comment) => {
-        return (
-          <div>
-            <ArticleComment comment={comment}></ArticleComment>
-          </div>
-        );
-      })}
-    </div>
+    <>
+      {existComments ? (
+        <div className="flex flex-col w-full gap-10">
+          {comments.map((comment) => {
+            return (
+              <div key={comment.id}>
+                <ArticleComment comment={comment} />
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        <div className="flex flex-col">
+          <Image src={empty.src} width={140} height={140} alt="emptyIamge" />
+          <p>아직 댓글이 없어요,</p>
+          <p>지금 댓글을 달아보세요!</p>
+        </div>
+      )}
+    </>
   );
 }
 
