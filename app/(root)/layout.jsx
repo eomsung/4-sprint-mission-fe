@@ -5,7 +5,9 @@ import Footer from "./_components/Footer";
 function Rootlayout({ children }) {
   return (
     <div>
-      <div className={`min-h-screen pb-[160px]${basicFont.className}`}>
+      <div
+        className={`min-h-screen pb-[160px]${basicFont.className} text-[#1F2937]`}
+      >
         <Header />
         {children}
       </div>

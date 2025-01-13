@@ -21,6 +21,13 @@ const getArticle = async (id) => {
   return data;
 };
 
+const createArticle = async (content) => {
+  const url = `/article`;
+  const response = await client.post(url, content);
+  const data = response.data;
+  return data;
+};
+
 const createComment = async (id, content) => {
   const url = `/article/${id}/comment`;
   const response = await client.post(url, { content });
@@ -46,6 +53,7 @@ const getProduct = async () => {
 const api = {
   getArticles,
   getArticle,
+  createArticle,
   createComment,
   getComments,
   getProduct,

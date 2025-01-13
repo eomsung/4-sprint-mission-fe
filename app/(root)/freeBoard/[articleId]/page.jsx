@@ -4,6 +4,7 @@ import Image from "next/image";
 import profile from "@/assets/svg/ic_profile.svg";
 import CreateComments from "./_components/CreateComments";
 import ArticleComments from "./_components/ArticleComments";
+import backIcon from "@/assets/svg/ic_back.svg";
 import Button from "@/components/Button";
 import Link from "next/link";
 
@@ -18,9 +19,9 @@ async function articlePage({ params }) {
   const comments = commentData.comments;
 
   return (
-    <div className="flex flex-col items-center w-[1200px] m-auto  gap-16">
+    <div className="flex flex-col items-center w-[1200px] m-auto gap-16 mt-8">
       {/* 본문문 */}
-      <div className="flex flex-col w-full gap-6">
+      <div className="flex flex-col w-full gap-6 ">
         <div className="flex flex-col gap-4 border-b border-[#E5E7EB]">
           <div>
             <h1 className="font-bold text-xl">{article.title}</h1>
@@ -43,7 +44,8 @@ async function articlePage({ params }) {
       {/* 버튼 */}
       <Link href={`/freeBoard`}>
         <Button className="w-[240px] h-12 rounded-[40px] px=16 py-3">
-          목록으로 돌아가기
+          <p className="mr-1">목록으로 돌아가기</p>
+          <Image src={backIcon.src} width={24} height={24} alt="backicon" />
         </Button>
       </Link>
     </div>

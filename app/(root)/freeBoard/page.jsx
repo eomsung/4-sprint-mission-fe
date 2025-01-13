@@ -5,6 +5,7 @@ import SearchBar from "@/components/SearchBar";
 import DropDown from "@/components/DropDown";
 import Articles from "./_components/Articles";
 import Button from "@/components/Button";
+import Link from "next/link";
 
 async function freeBorad({ searchParams }) {
   const bestArticles = await api.getArticles();
@@ -26,9 +27,11 @@ async function freeBorad({ searchParams }) {
         {/* 상단단 */}
         <div className="flex w-[1200px] justify-between items-center">
           <h1 className="font-bold text-xl">게시글</h1>
-          <Button className="px-3 py-[23px] rounded-lg h-[42px] box-border">
-            글쓰기
-          </Button>
+          <Link href="/freeBoard/create">
+            <Button className="px-3 py-[23px] rounded-lg h-[42px] box-border">
+              글쓰기
+            </Button>
+          </Link>
         </div>
 
         {/* 메뉴 바 */}
