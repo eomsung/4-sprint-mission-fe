@@ -7,23 +7,23 @@ import React, { useEffect, useState } from "react";
 function articleCreatePage() {
   const [disabled, setDisabled] = useState(true);
   const [isActive, setIsActive] = useState("inactive");
-  const [context, setContext] = useState({ title: "", content: "" });
+  const [newArticle, setNewArticle] = useState({ title: "", content: "" });
 
   const router = useRouter();
   useEffect(() => {
-    if (context.title === "" || context.content === "") {
+    if (newArticle.title === "" || newArticle.content === "") {
       setDisabled(true);
       setIsActive("inactive");
     } else {
       setDisabled(false);
       setIsActive("active");
     }
-  }, [context]);
+  }, [newArticle]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await api.createArticle(context);
+      const response = await api.createArticle(newArticle);
       const articleId = response.id;
       router.replace(`/freeBoard/${articleId}`);
     } catch (error) {
@@ -33,7 +33,7 @@ function articleCreatePage() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setContext((prev) => ({
+    setNewArticle((prev) => ({
       ...prev,
       [name]: value,
     }));

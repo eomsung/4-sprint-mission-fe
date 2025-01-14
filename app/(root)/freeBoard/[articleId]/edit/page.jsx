@@ -4,7 +4,7 @@ import Button from "@/components/Button";
 import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
-function articlePatchPage() {
+function EditArticlePage() {
   const [disabled, setDisabled] = useState(true);
   const [isActive, setIsActive] = useState("inactive");
   const [context, setContext] = useState({ title: "", content: "" });
@@ -33,7 +33,7 @@ function articlePatchPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await api.patchArticle(articleId, context); // 여기를 patch로
+      await api.patchArticle(articleId, context);
       router.replace(`/freeBoard/${articleId}`);
     } catch (error) {
       console.error(error);
@@ -87,4 +87,4 @@ function articlePatchPage() {
   );
 }
 
-export default articlePatchPage;
+export default EditArticlePage;

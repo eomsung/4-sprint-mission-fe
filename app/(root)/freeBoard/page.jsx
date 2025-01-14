@@ -7,6 +7,8 @@ import Articles from "./_components/Articles";
 import Button from "@/components/Button";
 import Link from "next/link";
 
+export const revalidate = 5;
+
 async function freeBorad({ searchParams }) {
   const bestArticles = await api.getArticles();
   const queryParams = await searchParams;
@@ -26,7 +28,7 @@ async function freeBorad({ searchParams }) {
       <div className="flex flex-col gap-6 w-full">
         {/* 상단단 */}
         <div className="flex w-full justify-between items-center">
-          <h1 className="font-bold text-xl">게시글</h1>
+          <h2 className="font-bold text-xl">게시글</h2>
           <Link href="/freeBoard/create">
             <Button className="px-3 py-[23px] rounded-lg h-[42px] box-border">
               글쓰기
@@ -46,7 +48,7 @@ async function freeBorad({ searchParams }) {
         </div>
 
         {/* 게시글 */}
-        <Articles data={articles}></Articles>
+        <Articles articles={articles}></Articles>
       </div>
     </div>
   );

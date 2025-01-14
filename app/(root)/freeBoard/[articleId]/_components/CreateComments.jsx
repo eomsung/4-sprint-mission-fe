@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Button from "@/components/Button";
 import api from "@/api";
 import { useParams, useRouter } from "next/navigation";
+
 function ArticleComments() {
   const [comment, setComment] = useState("");
   const params = useParams();
@@ -23,13 +24,13 @@ function ArticleComments() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await api.createComment(articleId, comment);
-      // console.log(response)
+      await api.createComment(articleId, comment);
       router.refresh();
+      setComment("");
     } catch (error) {
       console.error(error);
     }
-  }; //
+  };
 
   return (
     <div>

@@ -3,7 +3,7 @@ import React from "react";
 
 function Button({ children, isActive = "active", className, ...props }) {
   const buttonColor = clsx({
-    "bg-Blue text-white": isActive === "active",
+    "bg-blue text-white": isActive === "active",
     "bg-[#9CA3AF] text-white": isActive === "inactive",
   });
 

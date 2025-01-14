@@ -9,8 +9,14 @@ const client = axios.create({
 
 // 게시글 관련 api
 const getArticles = async (keyword = "", order = "recent") => {
-  const url = `/article?keyword=${keyword}&orderBy=${order}`;
-  const response = await client.get(url);
+  const options = {
+    params: {
+      keyword,
+      orderBy: order,
+    },
+  };
+  const url = `/article`;
+  const response = await client.get(url, options);
   const data = response.data;
   return data;
 };
@@ -22,9 +28,9 @@ const getArticle = async (id) => {
   return data;
 };
 
-const createArticle = async (content) => {
+const createArticle = async (newArticle) => {
   const url = `/article`;
-  const response = await client.post(url, content);
+  const response = await client.post(url, newArticle);
   const data = response.data;
   return data;
 };
@@ -36,9 +42,9 @@ const deleteArticle = async (id) => {
   return data;
 };
 
-const patchArticle = async (id, content) => {
+const patchArticle = async (id, article) => {
   const url = `/article/${id}`;
-  const response = await client.patch(url, content);
+  const response = await client.patch(url, article);
   const data = response.data;
   return data;
 };

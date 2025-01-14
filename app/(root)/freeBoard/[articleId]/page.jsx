@@ -7,14 +7,14 @@ import ArticleComments from "./_components/ArticleComments";
 import backIcon from "@/assets/svg/ic_back.svg";
 import Button from "@/components/Button";
 import Link from "next/link";
-import EditDeleteDropdown from "./_components/EditDeleteDropdown";
+import EditDeleteDropdown from "./_components/EditDeleteMenu";
 
-async function articlePage({ params }) {
+async function ArticlePage({ params }) {
   const param = await params;
   const articleId = param.articleId;
   const article = await api.getArticle(articleId);
   const createDate = article.createdAt;
-  let date = createDate.split("T")[0];
+  const date = createDate.split("T")[0];
 
   const commentData = await api.getComments(articleId);
   const comments = commentData.comments;
@@ -40,7 +40,7 @@ async function articlePage({ params }) {
       </div>
 
       {/* 댓글 작성  */}
-      <CreateComments></CreateComments>
+      <CreateComments />
       {/* 댓글들  */}
       <ArticleComments comments={comments}></ArticleComments>
       {/* 버튼 */}
@@ -54,4 +54,4 @@ async function articlePage({ params }) {
   );
 }
 
-export default articlePage;
+export default ArticlePage;

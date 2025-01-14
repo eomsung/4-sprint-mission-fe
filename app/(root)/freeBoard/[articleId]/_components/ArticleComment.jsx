@@ -1,18 +1,21 @@
 "use client";
 import api from "@/api";
-import EditDeleteDropdown from "./EditDeleteDropdown";
+import EditDeleteDropdown from "./EditDeleteMenu";
 import profile from "@/assets/svg/ic_profile.svg";
 import Button from "@/components/Button";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-const ArticleComment = ({ comment }) => {
+import CalculateTimeDiff from "@/utils/CalculateTimeDiff";
+
+function ArticleComment({ comment }) {
   const [edit, setEdit] = useState(false);
   const [updatedComment, setUpdatedComment] = useState(comment.content);
   const router = useRouter();
   const [timeDiff, setTimeDiff] = useState("");
   const [disabled, setDisabled] = useState(true);
   const [isActive, setIsActive] = useState("inactive");
+
   useEffect(() => {
     if (updatedComment === "") {
       setDisabled(true);
@@ -22,28 +25,11 @@ const ArticleComment = ({ comment }) => {
       setIsActive("active");
     }
   }, [updatedComment]);
+
   useEffect(() => {
-    const calculateTimeDiff = () => {
-      const createDate = new Date(comment.updatedAt).getTime();
-      const currentDate = new Date().getTime();
-
-      const seconds = Math.floor((currentDate - createDate) / 1000);
-      const minutes = Math.floor(seconds / 60);
-      const hours = Math.floor(minutes / 60);
-      const days = Math.floor(hours / 24);
-
-      if (seconds < 60) {
-        setTimeDiff(`${seconds}초 전`);
-      } else if (minutes < 60) {
-        setTimeDiff(`${minutes}분 전`);
-      } else if (hours < 24) {
-        setTimeDiff(`${hours}시간 전`);
-      } else {
-        setTimeDiff(`${days}일 전`);
-      }
-    };
-
-    calculateTimeDiff();
+    const updatedDate = new Date(comment.updatedAt).getTime();
+    const currentDate = new Date().getTime();
+    CalculateTimeDiff(updatedDate, currentDate, setTimeDiff);
   }, [comment.updatedAt]);
 
   const handlebuttonclick = async () => {
@@ -99,6 +85,6 @@ const ArticleComment = ({ comment }) => {
       </div>
     </div>
   );
-};
+}
 
 export default ArticleComment;
