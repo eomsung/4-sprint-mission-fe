@@ -1,15 +1,11 @@
-"use client";
-
 import React from "react";
 import Image from "next/image";
 import defualtImage from "@/assets/svg/img_default.svg";
 import heart from "@/assets/svg/ic_heart.svg";
 import profile from "@/assets/svg/ic_profile.svg";
 import Link from "next/link";
-const NUMBER = 4;
 
 function Articles({ data }) {
-  // const ArticlesData = data.slice(0, NUMBER);
   return (
     <div>
       <div className="flex flex-col gap-6">

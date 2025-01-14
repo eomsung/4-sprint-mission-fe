@@ -38,7 +38,7 @@ function ArticleComments() {
         <h1 className="font-semibold">댓글달기</h1>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <textarea
-            className="w-[1200px] h-[104px] px-6 py-4 bg-[#F3F4F6] rounded-xl resize-none"
+            className="xl:w-[1200px] md:w-[744px] w-[375px] h-[104px] px-6 py-4 bg-[#F3F4F6] rounded-xl resize-none"
             placeholder="댓글을 입력해주세요."
             value={comment}
             onChange={(e) => setComment(e.target.value)}

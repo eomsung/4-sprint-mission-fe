@@ -20,7 +20,7 @@ async function articlePage({ params }) {
   const comments = commentData.comments;
 
   return (
-    <div className="flex flex-col items-center w-[1200px] m-auto gap-16 mt-8">
+    <div className="flex flex-col items-center xl:w-[1200px] md:w-[744px] w-[375px] m-auto gap-16 mt-8">
       {/* 본문 */}
       <div className="flex flex-col w-full gap-6 ">
         <div className="flex flex-col gap-4 border-b border-[#E5E7EB]">

@@ -7,8 +7,8 @@ import icTwitter from "@/assets/svg/ic_twitter.svg";
 import Image from "next/image";
 function Footer() {
   return (
-    <div className="relative translate-y-full h-[160px] bg-black flex justify-center">
-      <div className="flex justify-between max-w-[1120px] w-full mt-8 ">
+    <div className="relative translate-y-full w-full h-[160px] bg-black flex justify-center items-center">
+      <div className="flex flex-col md:flex-row gap-3 md:gap-0 justify-between items-center xl:max-w-[1120px] md:max-w-[696px] w-full mt-8  ">
         <p className="text-[#9CA3AF]">©codeit - 2024 </p>
 
         <span className="flex text-[#E5E7EB] gap-[30px]">

@@ -1,7 +1,7 @@
 "use client";
 import api from "@/api";
 import Button from "@/components/Button";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 function articleCreatePage() {
@@ -41,7 +41,7 @@ function articleCreatePage() {
 
   return (
     <form
-      className="w-[1200px] m-auto flex flex-col gap-[32px] mt-8"
+      className="xl:w-[1200px] md:w-[696px] w-[345px] m-auto flex flex-col gap-[32px] mt-8"
       onSubmit={handleSubmit}
     >
       <div className="flex justify-between">

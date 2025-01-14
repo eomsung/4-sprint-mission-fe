@@ -15,7 +15,7 @@ async function freeBorad({ searchParams }) {
   const articles = await api.getArticles(keyword);
 
   return (
-    <div className="flex flex-col items-center gap-10 w-[1200px] m-auto">
+    <div className="flex flex-col items-center gap-10 xl:w-[1200px] md:w-[744px] w-[375px] m-auto">
       {/* 베스트 게시글 */}
       <div className="flex flex-col gap-6 mt-6">
         <h1 className="font-bold text-[20px]">베스트 게시글</h1>
@@ -23,9 +23,9 @@ async function freeBorad({ searchParams }) {
       </div>
 
       {/* 게시글 */}
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-6 w-full">
         {/* 상단단 */}
-        <div className="flex w-[1200px] justify-between items-center">
+        <div className="flex w-full justify-between items-center">
           <h1 className="font-bold text-xl">게시글</h1>
           <Link href="/freeBoard/create">
             <Button className="px-3 py-[23px] rounded-lg h-[42px] box-border">
@@ -35,8 +35,8 @@ async function freeBorad({ searchParams }) {
         </div>
 
         {/* 메뉴 바 */}
-        <div className="flex justify-between">
-          <SearchBar className="w-[1054px] h-[42px] rounded-xl py-[9px] pr-5 pl-4 bg-[#F3F4F6] ">
+        <div className="flex justify-between gap-[10px]">
+          <SearchBar className="xl:w-[1054px] md:w-[560px] w-[288px] h-[42px] rounded-xl py-[9px] pr-5 pl-4 bg-[#F3F4F6] ">
             검색할 상품을 입력해주세요
           </SearchBar>
           <DropDown className="w-[130px] px-5 py-3 ">

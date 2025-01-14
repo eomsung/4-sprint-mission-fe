@@ -4,10 +4,10 @@ import { basicFont } from "@/assets/fonts";
 import Footer from "./_components/Footer";
 function Rootlayout({ children }) {
   return (
-    <div>
-      <div
-        className={`min-h-screen pb-[160px]${basicFont.className} text-[#1F2937]`}
-      >
+    <div
+      className={`min-w-max pb-[160px] ${basicFont.className} text-[#1F2937]`}
+    >
+      <div className="min-h-screen">
         <Header />
         {children}
       </div>
