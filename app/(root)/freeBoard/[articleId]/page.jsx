@@ -26,7 +26,7 @@ async function articlePage({ params }) {
         <div className="flex flex-col gap-4 border-b border-[#E5E7EB]">
           <div className="flex justify-between items-center">
             <h1 className="font-bold text-xl">{article.title}</h1>
-            <EditDeleteDropdown />
+            <EditDeleteDropdown type="article" />
           </div>
           <div className="flex gap-4 items-center">
             <Image src={profile.src} width={40} height={40} alt="profile" />

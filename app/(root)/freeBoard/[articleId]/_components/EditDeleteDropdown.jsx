@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import api from "@/api";
 
-function EditDeleteDropdown() {
+function EditDeleteDropdown({ type, commentId, onEdit }) {
   const [isDropdown, setIsDropdown] = useState(false);
 
   const params = useParams();
@@ -17,16 +17,28 @@ function EditDeleteDropdown() {
   };
 
   const handleDelete = () => {
-    try {
-      api.deleteArticle(articleId);
-      router.replace("/freeBoard");
-    } catch (e) {
-      console.log(e);
+    if (type === "article") {
+      try {
+        api.deleteArticle(articleId);
+        router.replace("/freeBoard");
+      } catch (e) {
+        console.log(e);
+      }
+    }
+    if (type === "comment") {
+      api.deleteComment(commentId);
+      router.refresh();
     }
   };
 
   const handleEdit = () => {
-    router.push(`/freeBoard/${articleId}/edit`);
+    if (type === "article") {
+      router.push(`/freeBoard/${articleId}/edit`);
+    }
+    if (type === "comment") {
+      onEdit();
+      setIsDropdown(false);
+    }
   };
 
   return (

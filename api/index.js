@@ -56,6 +56,20 @@ const getComments = async (id) => {
   return data;
 };
 
+const deleteComment = async (id) => {
+  const url = `article/${id}/comment`;
+  const response = await client.delete(url);
+  const data = response.data;
+  return data;
+};
+
+const patchComment = async (id, content) => {
+  const url = `article/${id}/comment`;
+  const response = await client.patch(url, { content });
+  const data = response.data;
+  return data;
+};
+
 // 상품 관련 api
 const getProduct = async () => {
   const url = "/products";
@@ -72,6 +86,8 @@ const api = {
   patchArticle,
   createComment,
   getComments,
+  deleteComment,
+  patchComment,
   getProduct,
 };
 
