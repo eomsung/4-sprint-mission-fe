@@ -7,6 +7,7 @@ import ArticleComments from "./_components/ArticleComments";
 import backIcon from "@/assets/svg/ic_back.svg";
 import Button from "@/components/Button";
 import Link from "next/link";
+import EditDeleteDropdown from "./_components/EditDeleteDropdown";
 
 async function articlePage({ params }) {
   const param = await params;
@@ -20,11 +21,12 @@ async function articlePage({ params }) {
 
   return (
     <div className="flex flex-col items-center w-[1200px] m-auto gap-16 mt-8">
-      {/* 본문문 */}
+      {/* 본문 */}
       <div className="flex flex-col w-full gap-6 ">
         <div className="flex flex-col gap-4 border-b border-[#E5E7EB]">
-          <div>
+          <div className="flex justify-between items-center">
             <h1 className="font-bold text-xl">{article.title}</h1>
+            <EditDeleteDropdown />
           </div>
           <div className="flex gap-4 items-center">
             <Image src={profile.src} width={40} height={40} alt="profile" />

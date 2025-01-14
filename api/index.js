@@ -28,6 +28,20 @@ const createArticle = async (content) => {
   return data;
 };
 
+const deleteArticle = async (id) => {
+  const url = `/article/${id}`;
+  const response = await client.delete(url);
+  const data = response.data;
+  return data;
+};
+
+const patchArticle = async (id, content) => {
+  const url = `/article/${id}`;
+  const response = await client.patch(url, content);
+  const data = response.data;
+  return data;
+};
+
 const createComment = async (id, content) => {
   const url = `/article/${id}/comment`;
   const response = await client.post(url, { content });
@@ -54,6 +68,8 @@ const api = {
   getArticles,
   getArticle,
   createArticle,
+  deleteArticle,
+  patchArticle,
   createComment,
   getComments,
   getProduct,

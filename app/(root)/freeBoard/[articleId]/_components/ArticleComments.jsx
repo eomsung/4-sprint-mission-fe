@@ -1,10 +1,10 @@
 import React from "react";
 import Image from "next/image";
 import profile from "@/assets/svg/ic_profile.svg";
-import empty from "@/assets/svg/Img_empty.svg";
+import empty from "@/assets/svg/img_empty.svg";
+import EditDeleteDropdown from "./EditDeleteDropdown";
 
 function ArticleComments({ comments }) {
-  // const ArticlesData = data.slice(0, NUMBER);
   const existComments = comments.length !== 0;
   return (
     <>
@@ -53,7 +53,10 @@ const ArticleComment = ({ comment }) => {
 
   return (
     <div className=" bg-[#FCFCFC] border-b border-[#E5E7EB] pb-3 flex flex-col gap-6">
-      {comment.content}
+      <div className="flex justify-between items-center">
+        {comment.content}
+        <EditDeleteDropdown />
+      </div>
       <div className="flex gap-2">
         <Image src={profile.src} width={32} height={32} alt="profile" />
         <div className="flex flex-col gap-1 text-[12px]">
