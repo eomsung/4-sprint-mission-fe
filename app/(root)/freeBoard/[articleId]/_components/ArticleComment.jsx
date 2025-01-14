@@ -42,6 +42,11 @@ function ArticleComment({ comment }) {
     }
   };
 
+  const handleCancelButton = () => {
+    setEdit(false);
+    setUpdatedComment(comment.content);
+  };
+
   return (
     <div className=" bg-[#FCFCFC] border-b border-[#E5E7EB] pb-3 flex flex-col gap-6">
       <div className="flex justify-between items-center">
@@ -71,14 +76,23 @@ function ArticleComment({ comment }) {
         </div>
 
         {edit ? (
-          <Button
-            className="rounded-lg px-4"
-            onClick={handlebuttonclick}
-            disabled={disabled}
-            isActive={isActive}
-          >
-            저장하기
-          </Button>
+          <div className="flex gap-2">
+            <Button
+              isActive="inactive"
+              className="rounded-lg px-[23px] py-3 h-[42px]"
+              onClick={handleCancelButton}
+            >
+              취소
+            </Button>
+            <Button
+              className="rounded-lg px-[23px] py-3 h-[42px]"
+              onClick={handlebuttonclick}
+              disabled={disabled}
+              isActive={isActive}
+            >
+              수정 완료
+            </Button>
+          </div>
         ) : (
           ""
         )}
