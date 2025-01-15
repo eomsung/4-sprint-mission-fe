@@ -15,13 +15,14 @@ function Header() {
           </Link>
           <HeaderMenu />
         </div>
-
-        <Button
-          color="blue"
-          className="px-[23px] py-[23px] rounded-lg w-[128px] h-12 "
-        >
-          로그인
-        </Button>
+        <Link href="/login">
+          <Button
+            color="blue"
+            className="px-[23px] py-[23px] rounded-lg w-[128px] h-12 "
+          >
+            로그인
+          </Button>
+        </Link>
       </div>
     </header>
   );
