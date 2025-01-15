@@ -3,6 +3,7 @@ import MainBanner from "./_components/MainBanner";
 import home1 from "@/assets/svg/img_home_01.svg";
 import home2 from "@/assets/svg/img_home_02.svg";
 import home3 from "@/assets/svg/img_home_03.svg";
+import BottomBanner from "./_components/BottomBanner";
 export default function Home() {
   return (
     <div>
@@ -34,6 +35,7 @@ export default function Home() {
           botText2="쉽게 등록하세요"
         />
       </div>
+      <BottomBanner />
     </div>
   );
 }
