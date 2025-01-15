@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// const baseURL = "http://localhost:3100";
-const baseURL = "https://four-sprint-mission-be-1.onrender.com";
+const baseURL = "http://localhost:3100";
+// const baseURL = "https://four-sprint-mission-be-1.onrender.com";
 
 const client = axios.create({
   baseURL,

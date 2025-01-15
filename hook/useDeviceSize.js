@@ -1,11 +1,11 @@
 import { useMediaQuery } from "react-responsive";
 export const useDeviceSize = () => {
-  const isDesktop = useMediaQuery({ query: "(min-width: 1200px)" });
+  const isDesktop = useMediaQuery({ query: "(min-width: 1280px)" });
   const isTablet = useMediaQuery({
-    query: "(min-width:744px) and (max-width:1199px)",
+    query: "(min-width:768px) and (max-width:1279px)",
   });
   const isMobile = useMediaQuery({
-    query: "(min-width:375px) and (max-width:743px)",
+    query: "(min-width:375px) and (max-width:767px)",
   });
   return { isDesktop, isTablet, isMobile };
 };
