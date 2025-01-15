@@ -25,7 +25,7 @@ function articleCreatePage() {
     try {
       const response = await api.createArticle(newArticle);
       const articleId = response.id;
-      router.replace(`/freeBoard/${articleId}`);
+      router.replace(`/articles/${articleId}`);
     } catch (error) {
       console.error(error);
     }

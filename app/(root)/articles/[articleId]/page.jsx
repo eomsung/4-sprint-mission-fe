@@ -44,7 +44,7 @@ async function ArticlePage({ params }) {
       {/* 댓글들  */}
       <ArticleComments comments={comments}></ArticleComments>
       {/* 버튼 */}
-      <Link href={`/freeBoard`}>
+      <Link href={`/articles`}>
         <Button className="w-[240px] h-12 rounded-[40px] px=16 py-3">
           <p className="mr-1">목록으로 돌아가기</p>
           <Image src={backIcon.src} width={24} height={24} alt="backicon" />

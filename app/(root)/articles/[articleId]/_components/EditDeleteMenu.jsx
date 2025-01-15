@@ -20,7 +20,7 @@ function EditDeleteDropdown({ type, commentId, onEdit }) {
     if (type === "article") {
       try {
         api.deleteArticle(articleId);
-        router.replace("/freeBoard");
+        router.replace("/articles");
       } catch (e) {
         console.log(e);
       }

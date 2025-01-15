@@ -9,7 +9,7 @@ import Link from "next/link";
 
 export const revalidate = 5;
 
-async function freeBorad({ searchParams }) {
+async function articles({ searchParams }) {
   const bestArticles = await api.getArticles();
   const queryParams = await searchParams;
   const keyword = queryParams?.keyword || "";
@@ -29,7 +29,7 @@ async function freeBorad({ searchParams }) {
         {/* 상단단 */}
         <div className="flex w-full justify-between items-center">
           <h2 className="font-bold text-xl">게시글</h2>
-          <Link href="/freeBoard/create">
+          <Link href="/articles/create">
             <Button className="px-3 py-[23px] rounded-lg h-[42px] box-border">
               글쓰기
             </Button>
@@ -54,4 +54,4 @@ async function freeBorad({ searchParams }) {
   );
 }
 
-export default freeBorad;
+export default articles;

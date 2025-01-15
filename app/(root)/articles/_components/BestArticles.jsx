@@ -45,7 +45,7 @@ function BestArticles({ data }) {
     <div className="flex gap-6">
       {bestArticlesData.map((article) => {
         return (
-          <Link key={article.id} href={`/freeBoard/${article.id}`}>
+          <Link key={article.id} href={`/articles/${article.id}`}>
             <BestArticle key={article.id} article={article}></BestArticle>
           </Link>
         );

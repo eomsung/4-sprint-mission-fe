@@ -14,7 +14,7 @@ function HeaderMenu() {
             className={`px-[15px] py-[21px] text-[18px] ${
               pathName === "/freeBoard" ? "text-blue" : "text-[#4B5563]"
             } font-bold`}
-            href="/freeBoard"
+            href="/articles"
           >
             자유게시판
           </Link>
@@ -22,7 +22,7 @@ function HeaderMenu() {
             className={`px-[15px] py-[21px] text-[18px] ${
               pathName === "/market" ? "text-blue" : "text-[#4B5563]"
             } font-bold`}
-            href="/market"
+            href="/items"
           >
             중고마켓
           </Link>

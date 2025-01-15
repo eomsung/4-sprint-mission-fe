@@ -8,7 +8,7 @@ function Articles({ articles }) {
       <div className="flex flex-col gap-6">
         {articles.map((article) => {
           return (
-            <Link key={article.id} href={`/freeBoard/${article.id}`}>
+            <Link key={article.id} href={`/articles/${article.id}`}>
               <div>
                 <Article article={article}></Article>
               </div>
