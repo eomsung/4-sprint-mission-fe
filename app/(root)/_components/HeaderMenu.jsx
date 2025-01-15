@@ -12,7 +12,7 @@ function HeaderMenu() {
         <>
           <Link
             className={`px-[15px] py-[21px] text-[18px] ${
-              pathName === "/freeBoard" ? "text-blue" : "text-[#4B5563]"
+              pathName === "/articles" ? "text-blue" : "text-[#4B5563]"
             } font-bold`}
             href="/articles"
           >

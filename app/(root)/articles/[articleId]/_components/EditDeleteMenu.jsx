@@ -33,7 +33,7 @@ function EditDeleteDropdown({ type, commentId, onEdit }) {
 
   const handleEdit = () => {
     if (type === "article") {
-      router.push(`/freeBoard/${articleId}/edit`);
+      router.push(`/articles/${articleId}/edit`);
     }
     if (type === "comment") {
       onEdit();

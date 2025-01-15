@@ -34,7 +34,7 @@ function EditArticlePage() {
     e.preventDefault();
     try {
       await api.patchArticle(articleId, context);
-      router.replace(`/freeBoard/${articleId}`);
+      router.replace(`/articles/${articleId}`);
     } catch (error) {
       console.error(error);
     }
