@@ -20,7 +20,7 @@ function HeaderMenu() {
           </Link>
           <Link
             className={`px-[15px] py-[21px] text-[18px] ${
-              pathName === "/market" ? "text-blue" : "text-[#4B5563]"
+              pathName === "/items" ? "text-blue" : "text-[#4B5563]"
             } font-bold`}
             href="/items"
           >

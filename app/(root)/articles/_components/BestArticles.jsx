@@ -3,42 +3,16 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import BestArticle from "./BestArticle";
-
+import { useDeviceSize } from "@/hook/useDeviceSize";
 function BestArticles({ data }) {
   const [number, setNumber] = useState(3);
-  const [windowWidth, setWindowWidth] = useState(undefined);
+  const { isDesktop, isTablet, isMobile } = useDeviceSize();
+  const getPageSize = () => (isDesktop ? 3 : isTablet ? 2 : 1);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const handleResize = () => {
-        setWindowWidth(window.innerWidth);
-      };
-      window.addEventListener("resize", handleResize);
-      handleResize();
-      return () => window.removeEventListener("resize", handleResize);
-    } else {
-      return () =>
-        window.removeEventListener("resize", () => {
-          return null;
-        });
-    }
-  }, []);
-
-  useEffect(() => {
-    const getNumber = () => {
-      if (windowWidth >= 1280) {
-        // xl
-        return setNumber(3);
-      } else if (windowWidth >= 768) {
-        // md
-        return setNumber(2);
-      } else {
-        return setNumber(1);
-      }
-    };
-
-    getNumber();
-  }, [windowWidth]);
+    const pageSize = getPageSize();
+    setNumber(pageSize);
+  }, [isDesktop, isTablet, isMobile]);
 
   const bestArticlesData = data.slice(0, number);
   return (

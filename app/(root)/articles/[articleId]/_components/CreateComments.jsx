@@ -11,6 +11,7 @@ function ArticleComments() {
   const router = useRouter();
   const [disabled, setDisabled] = useState(true);
   const [isActive, setIsActive] = useState("inactive");
+
   useEffect(() => {
     if (comment === "") {
       setDisabled(true);

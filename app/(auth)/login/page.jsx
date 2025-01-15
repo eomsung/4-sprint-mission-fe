@@ -1,16 +1,40 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Logo from "@/assets/svg/pandaLogo.svg";
-import Google from "@/assets/svg/ic_google.svg";
-import Kakao from "@/assets/svg/ic_kakao.svg";
 import Link from "next/link";
 import Button from "@/components/Button";
+import InputBox from "../_components/InputBox";
+import SocialLogin from "../_components/SocialLogin";
 
 function loginPage() {
+  const [userData, setUserData] = useState({ email: "", password: "" });
+
+  const [disabled, setDisabled] = useState(true);
+  const [isActive, setIsActive] = useState("inactive");
+
+  useEffect(() => {
+    if (userData.email === "" || userData.password === "") {
+      setDisabled(true);
+      setIsActive("inactive");
+    } else {
+      setDisabled(false);
+      setIsActive("active");
+    }
+  }, [userData]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(userData);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   return (
@@ -25,35 +49,33 @@ function loginPage() {
       <div className="flex flex-col gap-6">
         <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
           {/* 입력 칸 */}
-          <div className="flex flex-col md:gap-4 gap-2">
-            <p className="font-bold md:text-[18px] text-[14px]">이메일</p>
-            <input
-              className="md:w-[640px] md:h-p[56px] rounded-xl px-6 py-4 bg-[#F3F4F6] w-[343px] h-14"
-              placeholder="이메일을 입력해주세요"
-            />
-          </div>
-          <div className="flex flex-col md:gap-4 gap-2">
-            <p className="font-bold md:text-[18px] text-[14px]">비밀번호</p>
-            <input
-              className="md:w-[640px] md:h-p[56px] rounded-xl px-6 py-4 bg-[#F3F4F6] w-[343px] h-14 "
-              placeholder="비밀번호를 입력해주세요"
-            />
-          </div>
+          <InputBox
+            title="이메일"
+            name="email"
+            handleChange={handleChange}
+            userData={userData}
+            placeholder="이메일을 입력해주세요"
+          />
+          <InputBox
+            title="비밀번호"
+            name="password"
+            handleChange={handleChange}
+            userData={userData}
+            placeholder="비밀번호를 입력해주세요"
+          />
 
           {/* 버튼 */}
-          <Button className="w-full h-14 rounded-[40px] px-[124px] py-4">
+          <Button
+            className="w-full h-14 rounded-[40px] px-[124px] py-4"
+            isActive={isActive}
+            disabled={disabled}
+          >
             로그인
           </Button>
         </form>
 
         {/* 간편 로그인 */}
-        <div className="w-full h-[74px] px-[23px] py-4 flex justify-between items-center rounded-lg bg-[#E6F2FF]">
-          <p className="font-medium"> 간편 로그인하기</p>
-          <div className="flex gap-4">
-            <Image src={Google.src} alt="googleicon" width={42} height={42} />
-            <Image src={Kakao.src} alt="kakaoicon" width={42} height={42} />
-          </div>
-        </div>
+        <SocialLogin />
 
         {/* 회원가입 이동 */}
         <div className="flex justify-center gap-1 font-medium">

@@ -5,11 +5,11 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 function articleCreatePage() {
+  const router = useRouter();
   const [disabled, setDisabled] = useState(true);
   const [isActive, setIsActive] = useState("inactive");
   const [newArticle, setNewArticle] = useState({ title: "", content: "" });
 
-  const router = useRouter();
   useEffect(() => {
     if (newArticle.title === "" || newArticle.content === "") {
       setDisabled(true);
