@@ -7,17 +7,35 @@ import Link from "next/link";
 import Button from "@/components/Button";
 import InputBox from "../_components/InputBox";
 import SocialLogin from "../_components/SocialLogin";
+import { useMutation } from "@tanstack/react-query";
+import api from "@/api";
+import { useAuth } from "@/cotexts/AuthContext";
+
+const email_pattern = /^[a-zA-Z0-9]+@[a-zA-Z]+\.+[a-zA-Z]/;
 
 function loginPage() {
+  const { logIn } = useAuth();
   const [userData, setUserData] = useState({ email: "", password: "" });
-  // const [error, setError] = useState({ email: "", password: "" });
+  const [errorMsg, setErrorMsg] = useState({ email: "", password: "" });
 
   const [disabled, setDisabled] = useState(true);
   const [isActive, setIsActive] = useState("inactive");
 
+  const { mutate: signIn } = useMutation({
+    mutationFn: (dto) => api.logIn(dto),
+    onSuccess: () => {
+      logIn();
+      alert("로그인성공");
+    },
+    onError: (error) => {
+      console.log(error);
+      alert("로그인 실패");
+      //모달 추가하기
+    },
+  });
+
   useEffect(() => {
     if (userData.email === "" || userData.password === "") {
-      //disable없애고 errorMsg 없으면 진행 있으면 강조
       setDisabled(true);
       setIsActive("inactive");
     } else {
@@ -26,19 +44,33 @@ function loginPage() {
     }
   }, [userData]);
 
-  // const handleErrorMsg = (name, value) => {
-  //   switch (name) {
-  //     case "email":
-  //       if (!value) return "이메일을 입력해주세요";
-  //       return "";
-  //     case "password":
-  //       if (!value) return "비밀번호를 입력해주세요";
-  //   }
-  // };
+  const handleErrorMsg = (name, value) => {
+    switch (name) {
+      case "email":
+        if (!value) return "이메일을 입력해주세요";
+        if (!email_pattern.test(value)) return "잘못된 이메일 형식입니다.";
+        return "";
+      case "password":
+        if (!value) return "비밀번호를 입력해주세요";
+        if (value.length < 8) return "비밀번호를 8자 이상 입력해주세요";
+        return "";
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(userData);
+    const { email, password } = e.target;
+    const errors = {
+      email: handleErrorMsg("email", email.value),
+      password: handleErrorMsg("password", password.value),
+    };
+    setErrorMsg(errors);
+    if (errorMsg.email === "" && errorMsg.password === "") {
+      console.log("login page 에서 유저 데이터는:", userData);
+      signIn(userData);
+    } else {
+      console.log("불가능!");
+    }
   };
 
   const handleChange = (e) => {
@@ -47,8 +79,12 @@ function loginPage() {
       ...prev,
       [name]: value,
     }));
-    // const errorMsg = handleErrorMsg(name, value);
-    // setError((prev) => ({ ...prev, [name]: errorMsg }));
+  };
+
+  const handleBlur = (e) => {
+    const { name, value } = e.target;
+    const errorMsg = handleErrorMsg(name, value);
+    setErrorMsg((prev) => ({ ...prev, [name]: errorMsg }));
   };
 
   return (
@@ -67,19 +103,22 @@ function loginPage() {
             <InputBox
               title="이메일"
               name="email"
-              handleChange={handleChange}
-              userData={userData}
+              onChange={handleChange}
+              userData={userData.email}
               placeholder="이메일을 입력해주세요"
+              onBlur={handleBlur}
+              errorMsg={errorMsg.email}
             />
-            {/* {error.email && <div className="text-red pl-4">{error.email}</div>} */}
           </div>
 
           <InputBox
             title="비밀번호"
             name="password"
-            handleChange={handleChange}
-            userData={userData}
+            onChange={handleChange}
+            userData={userData.password}
             placeholder="비밀번호를 입력해주세요"
+            onBlur={handleBlur}
+            errorMsg={errorMsg.password}
           />
 
           {/* 버튼 */}

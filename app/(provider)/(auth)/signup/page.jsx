@@ -7,23 +7,37 @@ import Link from "next/link";
 import Button from "@/components/Button";
 import InputBox from "../_components/InputBox";
 import SocialLogin from "../_components/SocialLogin";
+import { useMutation } from "@tanstack/react-query";
+import api from "@/api";
+
+const email_pattern = /^[a-zA-Z0-9]+@[a-zA-Z]+\.+[a-zA-Z]/;
 
 function SignupPage() {
   const [userData, setUserData] = useState({
     email: "",
     nickname: "",
     password: "",
-    passwordCheck: "",
+    passwordConfirmation: "",
+  });
+  const [errorMsg, setErrorMsg] = useState({
+    email: "",
+    nickname: "",
+    password: "",
+    passwordConfirmation: "",
   });
 
   const [disabled, setDisabled] = useState(true);
   const [isActive, setIsActive] = useState("inactive");
 
+  const { mutate: signUp } = useMutation({
+    mutationFn: (userData) => api.signUp(userData),
+  });
+
   useEffect(() => {
     if (
       userData.email === "" ||
       userData.password === "" ||
-      userData.passwordCheck === "" ||
+      userData.passwordConfirmation === "" ||
       userData.nickname === ""
     ) {
       setDisabled(true);
@@ -34,9 +48,51 @@ function SignupPage() {
     }
   }, [userData]);
 
+  const handleErrorMsg = (name, value) => {
+    switch (name) {
+      case "email":
+        if (!value) return "이메일을 입력해주세요";
+        if (!email_pattern.test(value)) return "잘못된 이메일 형식입니다.";
+        return "";
+      case "password":
+        if (!value) return "비밀번호를 입력해주세요";
+        if (value.length < 8) return "비밀번호를 8자 이상 입력해주세요";
+        return "";
+      case "nickname":
+        if (!value) return "닉네임을 입력해주세요";
+        return "";
+      case "passwordConfirmation":
+        if (value !== userData.password) return "비밀번호가 일치하지 않습니다";
+        return "";
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(userData);
+    const { email, nickname, password, passwordConfirmation } = e.target;
+    const errors = {
+      email: handleErrorMsg("email", email.value),
+      nickname: handleErrorMsg("nickname", nickname.value),
+      password: handleErrorMsg("password", password.value),
+      passwordConfirmation: handleErrorMsg(
+        "passwordConfirmation",
+        passwordConfirmation.value
+      ),
+    };
+
+    setErrorMsg(errors);
+
+    if (
+      errorMsg.email === "" &&
+      errorMsg.password === "" &&
+      errorMsg.nickname === "" &&
+      errorMsg.passwordConfirmation === ""
+    ) {
+      console.log("login page 에서 유저 데이터는:", userData);
+      signUp(userData);
+    } else {
+      console.log("불가능!");
+    }
   };
 
   const handleChange = (e) => {
@@ -45,6 +101,12 @@ function SignupPage() {
       ...prev,
       [name]: value,
     }));
+  };
+
+  const handleBlur = (e) => {
+    const { name, value } = e.target;
+    const errorMsg = handleErrorMsg(name, value);
+    setErrorMsg((prev) => ({ ...prev, [name]: errorMsg }));
   };
 
   return (
@@ -62,30 +124,38 @@ function SignupPage() {
           <InputBox
             title="이메일"
             name="email"
-            handleChange={handleChange}
-            userData={userData}
+            onChange={handleChange}
+            userData={userData.email}
             placeholder="이메일을 입력해주세요"
+            onBlur={handleBlur}
+            errorMsg={errorMsg.email}
           />
           <InputBox
             title="닉네임"
             name="nickname"
-            handleChange={handleChange}
-            userData={userData}
+            onChange={handleChange}
+            userData={userData.nickname}
             placeholder="닉네임임을 입력해주세요"
+            onBlur={handleBlur}
+            errorMsg={errorMsg.nickname}
           />
           <InputBox
             title="비밀번호"
             name="password"
-            handleChange={handleChange}
-            userData={userData}
+            onChange={handleChange}
+            userData={userData.password}
             placeholder="비밀번호를 입력해주세요"
+            onBlur={handleBlur}
+            errorMsg={errorMsg.password}
           />
           <InputBox
             title="비밀번호 확인"
-            name="passwordCheck"
-            handleChange={handleChange}
-            userData={userData}
+            name="passwordConfirmation"
+            onChange={handleChange}
+            userData={userData.passwordConfirmation}
             placeholder="비밀번호를 다시 한 번 입력해주세요요"
+            onBlur={handleBlur}
+            errorMsg={errorMsg.passwordConfirmation}
           />
 
           {/* 버튼 */}

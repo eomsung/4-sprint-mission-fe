@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// const baseURL = "http://localhost:3100";
-const baseURL = "https://four-sprint-mission-be-1.onrender.com";
+const baseURL = "http://localhost:3100";
+// const baseURL = "https://four-sprint-mission-be-1.onrender.com";
 
 const client = axios.create({
   baseURL,
@@ -85,6 +85,29 @@ const getProduct = async () => {
   return data;
 };
 
+// 로그인 관련 api
+const codeitURL = "https://panda-market-api.vercel.app";
+
+const codeitClient = axios.create({
+  baseURL: codeitURL,
+});
+
+const signUp = async (dto) => {
+  const url = "/auth/signUp";
+  const response = await codeitClient.post(url, dto);
+  const data = response.data;
+  return data;
+};
+
+const logIn = async (dto) => {
+  const url = "/auth/signIn";
+  const response = await codeitClient.post(url, dto);
+  console.log("response는 :", response);
+  const data = response.data;
+  console.log("data는 :", data);
+  return data;
+};
+
 const api = {
   getArticles,
   getArticle,
@@ -96,6 +119,8 @@ const api = {
   deleteComment,
   patchComment,
   getProduct,
+  signUp,
+  logIn,
 };
 
 export default api;

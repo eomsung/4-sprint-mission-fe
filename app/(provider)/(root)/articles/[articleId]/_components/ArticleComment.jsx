@@ -6,7 +6,7 @@ import Button from "@/components/Button";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import CalculateTimeDiff from "@/utils/CalculateTimeDiff";
+import calculateTimeDiff from "@/utils/calculateTimeDiff";
 
 function ArticleComment({ comment }) {
   const [edit, setEdit] = useState(false);
@@ -29,7 +29,7 @@ function ArticleComment({ comment }) {
   useEffect(() => {
     const updatedDate = new Date(comment.updatedAt).getTime();
     const currentDate = new Date().getTime();
-    CalculateTimeDiff(updatedDate, currentDate, setTimeDiff);
+    calculateTimeDiff(updatedDate, currentDate, setTimeDiff);
   }, [comment.updatedAt]);
 
   const handlebuttonclick = async () => {
