@@ -88,7 +88,7 @@ const getProduct = async () => {
 // 로그인 관련 api
 const codeitURL = "https://panda-market-api.vercel.app";
 
-const codeitClient = axios.create({
+export const codeitClient = axios.create({
   baseURL: codeitURL,
 });
 
@@ -102,9 +102,24 @@ const signUp = async (dto) => {
 const logIn = async (dto) => {
   const url = "/auth/signIn";
   const response = await codeitClient.post(url, dto);
-  console.log("response는 :", response);
   const data = response.data;
-  console.log("data는 :", data);
+
+  const { accessToken, refreshToken } = data;
+  codeitClient.defaults.headers.Authorization = `Bearer ${accessToken}`;
+  localStorage.setItem("refreshToken", refreshToken);
+
+  return data;
+};
+
+const refreshToken = async (prevRefreshToken) => {
+  const url = "/auth/refresh-token";
+  const response = await codeitClient.post(url, {
+    refreshToken: prevRefreshToken,
+  });
+  const data = response.data;
+  const { accessToken } = data;
+  codeitClient.defaults.headers.Authorization = `Bearer ${accessToken}`;
+
   return data;
 };
 
@@ -121,6 +136,7 @@ const api = {
   getProduct,
   signUp,
   logIn,
+  refreshToken,
 };
 
 export default api;

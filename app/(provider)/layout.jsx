@@ -1,4 +1,4 @@
-import { AuthProvider } from "@/cotexts/AuthContext";
+import { AuthProvider } from "@/contexts/AuthContext";
 import { TanstackQueryProvider } from "@/libs/tanstack-query";
 import React from "react";
 

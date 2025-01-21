@@ -9,11 +9,13 @@ import InputBox from "../_components/InputBox";
 import SocialLogin from "../_components/SocialLogin";
 import { useMutation } from "@tanstack/react-query";
 import api from "@/api";
-import { useAuth } from "@/cotexts/AuthContext";
+import { useAuth } from "@/contexts/AuthContext";
+import { useRouter } from "next/navigation";
 
 const email_pattern = /^[a-zA-Z0-9]+@[a-zA-Z]+\.+[a-zA-Z]/;
 
 function loginPage() {
+  const router = useRouter();
   const { logIn } = useAuth();
   const [userData, setUserData] = useState({ email: "", password: "" });
   const [errorMsg, setErrorMsg] = useState({ email: "", password: "" });
@@ -26,6 +28,7 @@ function loginPage() {
     onSuccess: () => {
       logIn();
       alert("로그인성공");
+      router.replace("/items");
     },
     onError: (error) => {
       console.log(error);

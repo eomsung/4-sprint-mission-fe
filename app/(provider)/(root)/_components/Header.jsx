@@ -4,6 +4,7 @@ import Logo from "@/assets/svg/pandaLogo.svg";
 import Button from "@/components/Button";
 import Link from "next/link";
 import HeaderMenu from "./HeaderMenu";
+import LogInButton from "./LogInButton";
 
 function Header() {
   return (
@@ -15,14 +16,7 @@ function Header() {
           </Link>
           <HeaderMenu />
         </div>
-        <Link href="/login">
-          <Button
-            color="blue"
-            className="px-[23px] py-[23px] rounded-lg w-[128px] h-12 "
-          >
-            로그인
-          </Button>
-        </Link>
+        <LogInButton />
       </div>
     </header>
   );

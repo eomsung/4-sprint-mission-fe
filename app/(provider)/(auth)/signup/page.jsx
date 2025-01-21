@@ -9,10 +9,12 @@ import InputBox from "../_components/InputBox";
 import SocialLogin from "../_components/SocialLogin";
 import { useMutation } from "@tanstack/react-query";
 import api from "@/api";
+import { useRouter } from "next/navigation";
 
 const email_pattern = /^[a-zA-Z0-9]+@[a-zA-Z]+\.+[a-zA-Z]/;
 
 function SignupPage() {
+  const router = useRouter();
   const [userData, setUserData] = useState({
     email: "",
     nickname: "",
@@ -31,6 +33,16 @@ function SignupPage() {
 
   const { mutate: signUp } = useMutation({
     mutationFn: (userData) => api.signUp(userData),
+    onSuccess: () => {
+      logIn();
+      alert("회원가입 성공");
+      router.replace("/items");
+    },
+    onError: (error) => {
+      console.log(error);
+      alert("회원가입 실패");
+      //모달 추가하기
+    },
   });
 
   useEffect(() => {
