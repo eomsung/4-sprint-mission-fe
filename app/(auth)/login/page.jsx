@@ -10,12 +10,14 @@ import SocialLogin from "../_components/SocialLogin";
 
 function loginPage() {
   const [userData, setUserData] = useState({ email: "", password: "" });
+  // const [error, setError] = useState({ email: "", password: "" });
 
   const [disabled, setDisabled] = useState(true);
   const [isActive, setIsActive] = useState("inactive");
 
   useEffect(() => {
     if (userData.email === "" || userData.password === "") {
+      //disable없애고 errorMsg 없으면 진행 있으면 강조
       setDisabled(true);
       setIsActive("inactive");
     } else {
@@ -23,6 +25,16 @@ function loginPage() {
       setIsActive("active");
     }
   }, [userData]);
+
+  // const handleErrorMsg = (name, value) => {
+  //   switch (name) {
+  //     case "email":
+  //       if (!value) return "이메일을 입력해주세요";
+  //       return "";
+  //     case "password":
+  //       if (!value) return "비밀번호를 입력해주세요";
+  //   }
+  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,6 +47,8 @@ function loginPage() {
       ...prev,
       [name]: value,
     }));
+    // const errorMsg = handleErrorMsg(name, value);
+    // setError((prev) => ({ ...prev, [name]: errorMsg }));
   };
 
   return (
@@ -49,13 +63,17 @@ function loginPage() {
       <div className="flex flex-col gap-6">
         <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
           {/* 입력 칸 */}
-          <InputBox
-            title="이메일"
-            name="email"
-            handleChange={handleChange}
-            userData={userData}
-            placeholder="이메일을 입력해주세요"
-          />
+          <div className="flex flex-col gap-2">
+            <InputBox
+              title="이메일"
+              name="email"
+              handleChange={handleChange}
+              userData={userData}
+              placeholder="이메일을 입력해주세요"
+            />
+            {/* {error.email && <div className="text-red pl-4">{error.email}</div>} */}
+          </div>
+
           <InputBox
             title="비밀번호"
             name="password"

@@ -11,7 +11,7 @@ function InputBox({ userData, handleChange, name, placeholder, title }) {
           "md:w-[640px] md:h-p[56px] rounded-xl px-6 py-4 bg-[#F3F4F6] w-[343px] h-14 focus:outline-blue"
         )}
         placeholder={placeholder}
-        value={userData[name]}
+        value={userData[name] || ""}
         onChange={handleChange}
         type={
           name === "password" || name === "passwordCheck" ? "password" : "text"
