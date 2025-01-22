@@ -5,7 +5,9 @@ import Link from "next/link";
 import React from "react";
 
 function LogInButton() {
-  const { isLoggedIn, logOut } = useAuth();
+  const { isLoggedIn, logOut, isAuthInitialized } = useAuth();
+
+  if (!isAuthInitialized) return null;
 
   return (
     <>

@@ -1,6 +1,7 @@
 "use client";
 
 import api, { codeitClient } from "@/api";
+import { usePathname, useRouter } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
 
 export const AuthContext = createContext({});
@@ -9,6 +10,17 @@ export const useAuth = () => useContext(AuthContext);
 
 export function AuthProvider({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAuthInitialized, setIsAuthInitialized] = useState(false);
+
+  const router = useRouter();
+  const pathname = usePathname();
+
+  // 로그인 상태면 페이지 이동
+  useEffect(() => {
+    const prevRefreshToken = localStorage.getItem("refreshToken");
+    if (prevRefreshToken && (pathname === "/signup" || pathname === "/login"))
+      router.replace("/items");
+  }, [isLoggedIn, pathname]);
 
   useEffect(() => {
     async function initializeLogInStatus() {
@@ -20,6 +32,8 @@ export function AuthProvider({ children }) {
         setIsLoggedIn(true);
       } catch {
         localStorage.removeItem("refreshToken");
+      } finally {
+        setIsAuthInitialized(true);
       }
     }
     initializeLogInStatus();
@@ -36,6 +50,7 @@ export function AuthProvider({ children }) {
     logIn,
     logOut,
     isLoggedIn,
+    isAuthInitialized,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

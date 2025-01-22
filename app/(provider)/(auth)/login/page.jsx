@@ -11,11 +11,14 @@ import { useMutation } from "@tanstack/react-query";
 import api from "@/api";
 import { useAuth } from "@/contexts/AuthContext";
 import { useRouter } from "next/navigation";
+import ErrorModal from "../_components/ErrorModal";
+import { useModal } from "@/contexts/ModalContext";
 
 const email_pattern = /^[a-zA-Z0-9]+@[a-zA-Z]+\.+[a-zA-Z]/;
 
 function loginPage() {
   const router = useRouter();
+  const modal = useModal();
   const { logIn } = useAuth();
   const [userData, setUserData] = useState({ email: "", password: "" });
   const [errorMsg, setErrorMsg] = useState({ email: "", password: "" });
@@ -27,13 +30,11 @@ function loginPage() {
     mutationFn: (dto) => api.logIn(dto),
     onSuccess: () => {
       logIn();
-      alert("로그인성공");
       router.replace("/items");
     },
     onError: (error) => {
-      console.log(error);
-      alert("로그인 실패");
-      //모달 추가하기
+      const errorMsg = error.response.data.message;
+      modal.open(<ErrorModal>{errorMsg}</ErrorModal>);
     },
   });
 
@@ -69,10 +70,7 @@ function loginPage() {
     };
     setErrorMsg(errors);
     if (errorMsg.email === "" && errorMsg.password === "") {
-      console.log("login page 에서 유저 데이터는:", userData);
       signIn(userData);
-    } else {
-      console.log("불가능!");
     }
   };
 

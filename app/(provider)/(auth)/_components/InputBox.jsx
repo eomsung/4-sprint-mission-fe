@@ -15,7 +15,7 @@ function InputBox({ userData, name, placeholder, title, errorMsg, ...props }) {
           placeholder={placeholder}
           value={userData}
           type={
-            name === "password" || name === "passwordCheck"
+            name === "password" || name === "passwordConfirmation"
               ? "password"
               : "text"
           }

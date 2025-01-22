@@ -10,11 +10,14 @@ import SocialLogin from "../_components/SocialLogin";
 import { useMutation } from "@tanstack/react-query";
 import api from "@/api";
 import { useRouter } from "next/navigation";
+import { useModal } from "@/contexts/ModalContext";
+import ErrorModal from "../_components/ErrorModal";
 
 const email_pattern = /^[a-zA-Z0-9]+@[a-zA-Z]+\.+[a-zA-Z]/;
 
 function SignupPage() {
   const router = useRouter();
+  const modal = useModal();
   const [userData, setUserData] = useState({
     email: "",
     nickname: "",
@@ -35,13 +38,11 @@ function SignupPage() {
     mutationFn: (userData) => api.signUp(userData),
     onSuccess: () => {
       logIn();
-      alert("회원가입 성공");
       router.replace("/items");
     },
     onError: (error) => {
-      console.log(error);
-      alert("회원가입 실패");
-      //모달 추가하기
+      const errorMsg = error.response.data.message;
+      modal.open(<ErrorModal>{errorMsg}</ErrorModal>);
     },
   });
 
@@ -100,10 +101,7 @@ function SignupPage() {
       errorMsg.nickname === "" &&
       errorMsg.passwordConfirmation === ""
     ) {
-      console.log("login page 에서 유저 데이터는:", userData);
       signUp(userData);
-    } else {
-      console.log("불가능!");
     }
   };
 
