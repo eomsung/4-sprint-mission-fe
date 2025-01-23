@@ -16,7 +16,7 @@ import { useModal } from "@/contexts/ModalContext";
 
 const email_pattern = /^[a-zA-Z0-9]+@[a-zA-Z]+\.+[a-zA-Z]/;
 
-function loginPage() {
+function LoginPage() {
   const router = useRouter();
   const modal = useModal();
   const { logIn } = useAuth();
@@ -147,4 +147,4 @@ function loginPage() {
   );
 }
 
-export default loginPage;
+export default LoginPage;

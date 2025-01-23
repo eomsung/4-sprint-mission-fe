@@ -2,10 +2,11 @@ import Image from "next/image";
 import defualtImage from "@/assets/svg/img_default.svg";
 import heart from "@/assets/svg/ic_heart.svg";
 import profile from "@/assets/svg/ic_profile.svg";
+import dayjs from "dayjs";
 
 function Article({ article }) {
   const createDate = article.createdAt;
-  let date = createDate.split("T")[0];
+  const date = dayjs(createDate).format("YYYY.MM.DD");
   return (
     <div className="w-full flex flex-col bg-[#F9FAFB] border-b border-[#E5E7EB] pb-6">
       {/* 제목과 이미지지 */}

@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import React from "react";
 
-function DropDown({ children, className, ...props }) {
+function OrderDropDown({ children, className, ...props }) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
@@ -29,4 +29,4 @@ function DropDown({ children, className, ...props }) {
   );
 }
 
-export default DropDown;
+export default OrderDropDown;

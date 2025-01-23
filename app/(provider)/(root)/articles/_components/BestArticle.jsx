@@ -2,10 +2,11 @@ import Image from "next/image";
 import defualtImage from "@/assets/svg/img_default.svg";
 import heart from "@/assets/svg/ic_heart.svg";
 import medal from "@/assets/svg/ic_medal.svg";
+import dayjs from "dayjs";
 
 function BestArticle({ article }) {
   const createDate = article.createdAt;
-  const date = createDate.split("T")[0];
+  const date = dayjs(createDate).format("YYYY.MM.DD");
   return (
     <div className="w-[384px] h-[169px] flex flex-col bg-[#F9FAFB] rounded-lg px-6 gap-[10px]">
       <div className="bg-blue w-[102px] rounded-b-2xl px-6 py-[2px] text-white flex gap-1 justify-center items-center">

@@ -3,8 +3,10 @@ import React, { useEffect, useState } from "react";
 import Button from "@/components/Button";
 import api from "@/api";
 import { useParams, useRouter } from "next/navigation";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 function ArticleComments() {
+  const queryClient = useQueryClient();
   const [comment, setComment] = useState("");
   const params = useParams();
   const articleId = params.articleId;
@@ -22,15 +24,19 @@ function ArticleComments() {
     }
   }, [comment]);
 
+  const { mutate: createCommentInArticle } = useMutation({
+    mutationFn: (comment) => api.createCommentInArticle(articleId, comment),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["comments", { articleId }],
+      });
+    },
+  });
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await api.createComment(articleId, comment);
-      router.refresh();
-      setComment("");
-    } catch (error) {
-      console.error(error);
-    }
+    createCommentInArticle(comment);
+    setComment("");
   };
 
   return (

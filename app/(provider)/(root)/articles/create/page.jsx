@@ -4,7 +4,7 @@ import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
-function articleCreatePage() {
+function ArticleCreatePage() {
   const router = useRouter();
   const [disabled, setDisabled] = useState(true);
   const [isActive, setIsActive] = useState("inactive");
@@ -76,4 +76,4 @@ function articleCreatePage() {
   );
 }
 
-export default articleCreatePage;
+export default ArticleCreatePage;

@@ -22,6 +22,7 @@ export function AuthProvider({ children }) {
       router.replace("/items");
   }, [isLoggedIn, pathname]);
 
+  // 새로고침해도 로그인 유지되게게
   useEffect(() => {
     async function initializeLogInStatus() {
       try {

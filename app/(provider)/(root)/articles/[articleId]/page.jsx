@@ -7,16 +7,18 @@ import ArticleComments from "./_components/ArticleComments";
 import backIcon from "@/assets/svg/ic_back.svg";
 import Button from "@/components/Button";
 import Link from "next/link";
-import EditDeleteDropdown from "./_components/EditDeleteMenu";
+import dayjs from "dayjs";
+import DropdownMenuForArticle from "./_components/DropdownMenuForArticle";
 
-async function ArticlePage({ params }) {
-  const param = await params;
-  const articleId = param.articleId;
+async function ArticlePage(props) {
+  const params = await props.params;
+  const articleId = params.articleId;
   const article = await api.getArticle(articleId);
   const createDate = article.createdAt;
-  const date = createDate.split("T")[0];
 
-  const commentData = await api.getComments(articleId);
+  const date = dayjs(createDate).format("YYYY.MM.DD");
+
+  const commentData = await api.getCommentsinArticle(articleId);
   const comments = commentData.comments;
 
   return (
@@ -26,7 +28,7 @@ async function ArticlePage({ params }) {
         <div className="flex flex-col gap-4 border-b border-[#E5E7EB]">
           <div className="flex justify-between items-center">
             <h1 className="font-bold text-xl">{article.title}</h1>
-            <EditDeleteDropdown type="article" />
+            <DropdownMenuForArticle />
           </div>
           <div className="flex gap-4 items-center">
             <Image src={profile.src} width={40} height={40} alt="profile" />
@@ -42,7 +44,7 @@ async function ArticlePage({ params }) {
       {/* 댓글 작성  */}
       <CreateComments />
       {/* 댓글들  */}
-      <ArticleComments comments={comments}></ArticleComments>
+      <ArticleComments initailComments={comments}></ArticleComments>
       {/* 버튼 */}
       <Link href={`/articles`}>
         <Button className="w-[240px] h-12 rounded-[40px] px=16 py-3">

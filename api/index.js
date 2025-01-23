@@ -49,28 +49,28 @@ const patchArticle = async (id, article) => {
   return data;
 };
 
-const createComment = async (id, content) => {
+const createCommentInArticle = async (id, content) => {
   const url = `/article/${id}/comment`;
   const response = await client.post(url, { content });
   const data = response.data;
   return data;
 };
 
-const getComments = async (id) => {
+const getCommentsinArticle = async (id) => {
   const url = `article/${id}/comments`;
   const response = await client.get(url);
   const data = response.data;
   return data;
 };
 
-const deleteComment = async (id) => {
+const deleteCommentInArticle = async (id) => {
   const url = `article/${id}/comment`;
   const response = await client.delete(url);
   const data = response.data;
   return data;
 };
 
-const patchComment = async (id, content) => {
+const patchCommentInArticle = async (id, content) => {
   const url = `article/${id}/comment`;
   const response = await client.patch(url, { content });
   const data = response.data;
@@ -78,7 +78,7 @@ const patchComment = async (id, content) => {
 };
 
 // 상품 관련 api
-const getProduct = async () => {
+const getProducts = async () => {
   const url = "/products";
   const response = await client.get(url);
   const data = response.data;
@@ -123,20 +123,46 @@ const refreshToken = async (prevRefreshToken) => {
   return data;
 };
 
+// 유저정보 관련
+const getUserData = async () => {
+  const url = "/users/me";
+  const response = await codeitClient.get(url);
+  const data = response.data;
+  return data;
+};
+
+// product
+const getProduct = async (productId) => {
+  const url = `products/${productId}`;
+  const response = await codeitClient.get(url);
+  const data = response.data;
+  return data;
+};
+
+const deleteProduct = async (productId) => {
+  const url = `products/${productId}`;
+  const response = await codeitClient.delete(url);
+  const data = response.data;
+  return data;
+};
+
 const api = {
   getArticles,
   getArticle,
   createArticle,
   deleteArticle,
   patchArticle,
-  createComment,
-  getComments,
-  deleteComment,
-  patchComment,
-  getProduct,
+  createCommentInArticle,
+  getCommentsinArticle,
+  deleteCommentInArticle,
+  patchCommentInArticle,
+  getProducts,
   signUp,
   logIn,
   refreshToken,
+  getUserData,
+  getProduct,
+  deleteProduct,
 };
 
 export default api;

@@ -1,20 +1,25 @@
 "use client";
 import api from "@/api";
-import EditDeleteDropdown from "./EditDeleteMenu";
 import profile from "@/assets/svg/ic_profile.svg";
 import Button from "@/components/Button";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import calculateTimeDiff from "@/utils/calculateTimeDiff";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import DropdownMenuForComment from "./DropdownMenuForComment";
 
 function ArticleComment({ comment }) {
+  const queryClient = useQueryClient();
   const [edit, setEdit] = useState(false);
   const [updatedComment, setUpdatedComment] = useState(comment.content);
   const router = useRouter();
   const [timeDiff, setTimeDiff] = useState("");
   const [disabled, setDisabled] = useState(true);
   const [isActive, setIsActive] = useState("inactive");
+  const commentId = comment.id;
+  const params = useParams();
+  const articleId = params.articleId;
 
   useEffect(() => {
     if (updatedComment === "") {
@@ -32,14 +37,20 @@ function ArticleComment({ comment }) {
     calculateTimeDiff(updatedDate, currentDate, setTimeDiff);
   }, [comment.updatedAt]);
 
-  const handlebuttonclick = async () => {
-    try {
-      api.patchComment(comment.id, updatedComment);
-      setEdit(false);
-      router.refresh();
-    } catch (e) {
-      console.error(e);
-    }
+  const { mutate: patchCommentInArticle } = useMutation({
+    mutationFn: (updatedComment) =>
+      api.patchCommentInArticle(commentId, updatedComment),
+    onSuccess: () => {
+      console.log(articleId);
+      queryClient.invalidateQueries({
+        queryKey: ["comments", { articleId }],
+      });
+    },
+  });
+
+  const handlebuttonclick = () => {
+    patchCommentInArticle(updatedComment);
+    setEdit(false);
   };
 
   const handleCancelButton = () => {
@@ -57,11 +68,12 @@ function ArticleComment({ comment }) {
             className="resize-none w-full px-3 py-2 bg-[#F3F4F6] rounded-xl"
           ></textarea>
         ) : (
-          <p> {comment.content}</p>
+          <div>
+            <p> {comment.content}</p>
+          </div>
         )}
 
-        <EditDeleteDropdown
-          type="comment"
+        <DropdownMenuForComment
           commentId={comment.id}
           onEdit={() => setEdit(true)}
         />

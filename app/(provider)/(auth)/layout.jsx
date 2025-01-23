@@ -1,6 +1,6 @@
 import React from "react";
 
-function layout({ children }) {
+function AuthLayout({ children }) {
   return (
     <div className={`min-w-max min-h-screen  flex items-center`}>
       {children}
@@ -8,4 +8,4 @@ function layout({ children }) {
   );
 }
 
-export default layout;
+export default AuthLayout;

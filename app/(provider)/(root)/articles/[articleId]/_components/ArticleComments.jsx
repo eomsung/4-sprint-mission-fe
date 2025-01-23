@@ -1,10 +1,22 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import empty from "@/assets/svg/img_empty.svg";
 import ArticleComment from "./ArticleComment";
+import { useQuery } from "@tanstack/react-query";
+import api from "@/api";
+import { useParams } from "next/navigation";
 
-function ArticleComments({ comments }) {
-  const existComments = comments.length !== 0;
+function ArticleComments({ initailComments }) {
+  const existComments = initailComments.length !== 0;
+  const params = useParams();
+  const articleId = params.articleId;
+  const { data: comments } = useQuery({
+    queryFn: () =>
+      api.getCommentsinArticle(articleId).then((data) => data.comments),
+    queryKey: ["comments", { articleId }],
+    initialData: initailComments,
+  });
   return (
     <>
       {existComments ? (
