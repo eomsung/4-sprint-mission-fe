@@ -7,12 +7,12 @@ import React from "react";
 function DropdownMenuForItem() {
   const queryClient = useQueryClient();
   const params = useParams();
-  const itemId = params.itemId;
+  const productId = params.productId;
   const { mutate: deleteItem } = useMutation({
-    mutationFn: () => api.deleteProduct(itemId),
+    mutationFn: () => api.deleteProduct(productId),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["item", { itemId }],
+        queryKey: ["product", { productId }],
       });
     },
     onError: () => {

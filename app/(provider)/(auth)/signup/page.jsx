@@ -38,7 +38,7 @@ function SignupPage() {
     mutationFn: (userData) => api.signUp(userData),
     onSuccess: () => {
       logIn();
-      router.replace("/items");
+      router.replace("/products");
     },
     onError: (error) => {
       const errorMsg = error.response.data.message;

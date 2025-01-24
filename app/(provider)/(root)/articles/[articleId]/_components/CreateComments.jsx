@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Button from "@/components/Button";
 import api from "@/api";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 function ArticleComments() {
@@ -10,7 +10,6 @@ function ArticleComments() {
   const [comment, setComment] = useState("");
   const params = useParams();
   const articleId = params.articleId;
-  const router = useRouter();
   const [disabled, setDisabled] = useState(true);
   const [isActive, setIsActive] = useState("inactive");
 

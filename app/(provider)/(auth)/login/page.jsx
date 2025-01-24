@@ -30,7 +30,7 @@ function LoginPage() {
     mutationFn: (dto) => api.logIn(dto),
     onSuccess: () => {
       logIn();
-      router.replace("/items");
+      router.replace("/products");
     },
     onError: (error) => {
       const errorMsg = error.response.data.message;

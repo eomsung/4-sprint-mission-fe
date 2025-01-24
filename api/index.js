@@ -133,15 +133,41 @@ const getUserData = async () => {
 
 // product
 const getProduct = async (productId) => {
-  const url = `products/${productId}`;
+  const url = `/products/${productId}`;
   const response = await codeitClient.get(url);
   const data = response.data;
   return data;
 };
 
 const deleteProduct = async (productId) => {
-  const url = `products/${productId}`;
+  const url = `/products/${productId}`;
   const response = await codeitClient.delete(url);
+  const data = response.data;
+  return data;
+};
+
+const getCommentsInProduct = async (productId, limit = 10) => {
+  const options = {
+    params: {
+      limit,
+    },
+  };
+  const url = `/products/${productId}/comments`;
+  const response = await codeitClient.get(url, options);
+  const data = response.data;
+  return data;
+};
+
+const deleteCommentInProduct = async (commentId) => {
+  const url = `/comments/${commentId}`;
+  const response = await codeitClient.delete(url);
+  const data = response.data;
+  return data;
+};
+
+const patchCommentInProduct = async (commentId, content) => {
+  const url = `/comments/${commentId}`;
+  const response = await codeitClient.patch(url, { content });
   const data = response.data;
   return data;
 };
@@ -163,6 +189,9 @@ const api = {
   getUserData,
   getProduct,
   deleteProduct,
+  getCommentsInProduct,
+  deleteCommentInProduct,
+  patchCommentInProduct,
 };
 
 export default api;

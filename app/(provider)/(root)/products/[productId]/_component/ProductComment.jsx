@@ -7,9 +7,9 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import calculateTimeDiff from "@/utils/calculateTimeDiff";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import DropdownMenuForComment from "./DropdownMenuForComment";
+import DropdownMenuForProcutComment from "./DropdownMenuForProcutComment";
 
-function ArticleComment({ comment }) {
+function ProductComment({ comment }) {
   const queryClient = useQueryClient();
   const [edit, setEdit] = useState(false);
   const [updatedComment, setUpdatedComment] = useState(comment.content);
@@ -18,7 +18,7 @@ function ArticleComment({ comment }) {
   const [isActive, setIsActive] = useState("inactive");
   const commentId = comment.id;
   const params = useParams();
-  const articleId = params.articleId;
+  const productId = params.productId;
 
   useEffect(() => {
     if (updatedComment === "") {
@@ -36,18 +36,18 @@ function ArticleComment({ comment }) {
     calculateTimeDiff(updatedDate, currentDate, setTimeDiff);
   }, [comment.updatedAt]);
 
-  const { mutate: patchCommentInArticle } = useMutation({
+  const { mutate: patchCommentInProduct } = useMutation({
     mutationFn: (updatedComment) =>
-      api.patchCommentInArticle(commentId, updatedComment),
+      api.patchCommentInProduct(commentId, updatedComment),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["comments", { articleId }],
+        queryKey: ["comments", { productId }],
       });
     },
   });
 
   const handlebuttonclick = () => {
-    patchCommentInArticle(updatedComment);
+    patchCommentInProduct(updatedComment);
     setEdit(false);
   };
 
@@ -71,7 +71,7 @@ function ArticleComment({ comment }) {
           </div>
         )}
 
-        <DropdownMenuForComment
+        <DropdownMenuForProcutComment
           commentId={comment.id}
           onEdit={() => setEdit(true)}
         />
@@ -111,4 +111,4 @@ function ArticleComment({ comment }) {
   );
 }
 
-export default ArticleComment;
+export default ProductComment;

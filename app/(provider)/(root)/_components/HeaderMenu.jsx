@@ -20,9 +20,9 @@ function HeaderMenu() {
           </Link>
           <Link
             className={`px-[15px] py-[21px] text-[18px] ${
-              pathName === "/items" ? "text-blue" : "text-[#4B5563]"
+              pathName === "/products" ? "text-blue" : "text-[#4B5563]"
             } font-bold`}
-            href="/items"
+            href="/products"
           >
             중고마켓
           </Link>

@@ -13,7 +13,7 @@ function MainBanner() {
             <p>일상의 모든 물건을 &nbsp; </p>
             <p>거래해 보세요</p>
           </h1>
-          <Link href="/items">
+          <Link href="/products">
             <Button className="h-[56px] rounded-[40px] px-[124px] py-4 text-xl font-semibold">
               구경하러 가기
             </Button>
