@@ -96,6 +96,10 @@ const signUp = async (dto) => {
   const url = "/auth/signUp";
   const response = await codeitClient.post(url, dto);
   const data = response.data;
+
+  const { accessToken, refreshToken } = data;
+  codeitClient.defaults.headers.Authorization = `Bearer ${accessToken}`;
+  localStorage.setItem("refreshToken", refreshToken);
   return data;
 };
 
@@ -179,6 +183,20 @@ const createCommentInProduct = async (productId, content) => {
   return data;
 };
 
+const createFavoriteProduct = async (productId) => {
+  const url = `/products/${productId}/favorite`;
+  const response = await codeitClient.post(url);
+  const data = response.data;
+  return data;
+};
+
+const deleteFavoriteProduct = async (productId) => {
+  const url = `/products/${productId}/favorite`;
+  const response = await codeitClient.delete(url);
+  const data = response.data;
+  return data;
+};
+
 const api = {
   getArticles,
   getArticle,
@@ -200,6 +218,8 @@ const api = {
   deleteCommentInProduct,
   patchCommentInProduct,
   createCommentInProduct,
+  createFavoriteProduct,
+  deleteFavoriteProduct,
 };
 
 export default api;

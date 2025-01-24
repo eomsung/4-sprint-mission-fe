@@ -12,7 +12,7 @@ function ItemDetailPage() {
   const { isLoggedIn } = useAuth();
   const params = useParams();
   const productId = params.productId;
-  const router = useRouter();
+  // const router = useRouter();
 
   const { data: product, isError } = useQuery({
     queryFn: () => api.getProduct(productId),
@@ -28,14 +28,13 @@ function ItemDetailPage() {
     initialData: {},
   });
 
-  useEffect(() => {
-    if (!isLoggedIn) router.replace("/products"); // 로그아웃하면
-
-    if (isError) {
-      // 없는 상품 들어가면
-      router.replace("/products");
-    }
-  }, [isError, router, isLoggedIn]);
+  // useEffect(() => {
+  //   if (!isLoggedIn) router.replace("/products"); // 로그아웃하면
+  //   if (isError) {
+  //     // 없는 상품 들어가면
+  //     router.replace("/products");
+  //   }
+  // }, [isError, router, isLoggedIn]);
 
   return (
     <div className="flex flex-col items-center m-auto w-[1200px] justify-center mt-6 gap-16">

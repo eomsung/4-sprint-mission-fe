@@ -12,12 +12,14 @@ import api from "@/api";
 import { useRouter } from "next/navigation";
 import { useModal } from "@/contexts/ModalContext";
 import ErrorModal from "../_components/ErrorModal";
+import { useAuth } from "@/contexts/AuthContext";
 
 const email_pattern = /^[a-zA-Z0-9]+@[a-zA-Z]+\.+[a-zA-Z]/;
 
 function SignupPage() {
   const router = useRouter();
   const modal = useModal();
+  const { logIn } = useAuth();
   const [userData, setUserData] = useState({
     email: "",
     nickname: "",
@@ -39,6 +41,7 @@ function SignupPage() {
     onSuccess: () => {
       logIn();
       router.replace("/products");
+      console.log("성공");
     },
     onError: (error) => {
       const errorMsg = error.response.data.message;
@@ -174,7 +177,7 @@ function SignupPage() {
             type={isActive}
             disabled={disabled}
           >
-            로그인
+            회원가입
           </Button>
         </form>
 

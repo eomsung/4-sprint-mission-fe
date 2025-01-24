@@ -3,11 +3,37 @@ import dayjs from "dayjs";
 import React from "react";
 import defaultUserImage from "@/assets/svg/defualt_user_image.svg";
 import Image from "next/image";
+import emptyHeartIcon from "@/assets/svg/ic_empty_heart.svg";
 import heartIcon from "@/assets/svg/ic_heart.svg";
 import DropdownMenuForProduct from "./DropdownMenuForProduct";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import api from "@/api";
+import { useParams } from "next/navigation";
 
 function ProductDetailData({ product, userData }) {
+  const queryClient = useQueryClient();
+  const params = useParams();
+  const productId = params.productId;
   const date = dayjs(product.createdAt).format("YYYY.MM.DD");
+
+  const { mutate: createFavoriteProduct } = useMutation({
+    mutationFn: () => api.createFavoriteProduct(productId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["product", { productId }],
+      });
+    },
+  });
+
+  const { mutate: deleteFavoriteProduct } = useMutation({
+    mutationFn: () => api.deleteFavoriteProduct(productId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["product", { productId }],
+      });
+    },
+  });
+
   return (
     <div className="flex flex-col gap-10">
       <div className="flex gap-6">
@@ -71,7 +97,23 @@ function ProductDetailData({ product, userData }) {
             <div className="flex gap-6">
               <div className="border" />
               <div className="rounded-[35px] px-3 py-1 border border-[#E5E7EB] flex gap-[10px] font-medium items-center">
-                <Image src={heartIcon} alt="heartIcon" width={32} height={32} />
+                {product.isFavorite ? (
+                  <Image
+                    src={heartIcon.src}
+                    alt="heartIcon"
+                    width={32}
+                    height={32}
+                    onClick={deleteFavoriteProduct}
+                  />
+                ) : (
+                  <Image
+                    src={emptyHeartIcon.src}
+                    alt="emptyHeartIcon"
+                    width={32}
+                    height={32}
+                    onClick={createFavoriteProduct}
+                  />
+                )}
                 {product.favoriteCount}
               </div>
             </div>

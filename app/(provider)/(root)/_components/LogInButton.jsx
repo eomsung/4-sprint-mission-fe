@@ -25,7 +25,7 @@ function LogInButton() {
     <>
       {isLoggedIn ? (
         <div className="flex items-center gap-2">
-          {userData.image && (
+          {userData.image ? (
             <img
               src={userData.image}
               alt="userProfileImage"
@@ -34,6 +34,14 @@ function LogInButton() {
               onClick={logOut}
               onError={(e) => (e.target.src = defaultUserImage.src)}
               className="rounded-lg aspect-square"
+            />
+          ) : (
+            <img
+              src={defaultUserImage.src}
+              alt="userProfileImage"
+              width={40}
+              height={40}
+              onClick={logOut}
             />
           )}
           <p>{userData.nickname}</p>
