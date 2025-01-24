@@ -37,7 +37,7 @@ function ItemDetailPage() {
   // }, [isError, router, isLoggedIn]);
 
   return (
-    <div className="flex flex-col items-center m-auto w-[1200px] justify-center mt-6 gap-16">
+    <div className="flex flex-col items-center m-auto xl:w-[1200px] md:w-[744px] w-[375px] justify-center mt-6 gap-16">
       <ProductDetailData product={product} userData={userData} />
       <div className="flex flex-col gap-6 w-full">
         <CreateCommentInProduct />

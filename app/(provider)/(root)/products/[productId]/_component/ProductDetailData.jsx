@@ -35,17 +35,17 @@ function ProductDetailData({ product, userData }) {
   });
 
   return (
-    <div className="flex flex-col gap-10">
-      <div className="flex gap-6">
+    <div className="flex flex-col gap-10 w-full">
+      <div className="flex md:flex-row flex-col gap-6">
         {/* 이미지 */}
         <img
           src={product.images}
           alt="productImage"
-          className="w-[486px] h-[486px] rounded-2xl"
+          className="xl:w-[486px] xl:h-[486px] w-[340px] h-[340px] rounded-2xl"
           onError={(e) => (e.target.src = defaultUserImage.src)}
         />
         {/* 상품 관련 */}
-        <div className="flex flex-col justify-between gap-[62px] w-[690px]">
+        <div className="flex flex-col justify-between gap-[62px] md:w-[690px]">
           <div className="flex flex-col gap-6">
             {/* 상품 이름 ,가격 */}
             <div className="flex flex-col gap-4 font-semibold justify-between border-b border-[#E5E7EB]">
