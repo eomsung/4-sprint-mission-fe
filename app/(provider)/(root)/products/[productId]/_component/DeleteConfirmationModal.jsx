@@ -27,8 +27,10 @@ function DeleteConfirmationModal({ children }) {
     },
     onError: () => {
       alert("삭제할 수 없는 상품입니다.");
+      modal.close();
     },
   });
+
   return (
     <Modal>
       <div className="flex flex-col items-center gap-6">
