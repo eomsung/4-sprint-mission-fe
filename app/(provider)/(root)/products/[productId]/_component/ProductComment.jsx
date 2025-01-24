@@ -88,7 +88,7 @@ function ProductComment({ comment }) {
         {edit ? (
           <div className="flex gap-2">
             <Button
-              isActive="inactive"
+              type="inactive"
               className="rounded-lg px-[23px] py-3 h-[42px]"
               onClick={handleCancelButton}
             >
@@ -98,7 +98,7 @@ function ProductComment({ comment }) {
               className="rounded-lg px-[23px] py-3 h-[42px]"
               onClick={handlebuttonclick}
               disabled={disabled}
-              isActive={isActive}
+              type={isActive}
             >
               수정 완료
             </Button>

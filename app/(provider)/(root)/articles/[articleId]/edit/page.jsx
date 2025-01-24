@@ -58,7 +58,7 @@ function EditArticlePage() {
         <Button
           className="h-[42px] rounded-lg px-[23px] py-3"
           disabled={disabled}
-          isActive={isActive}
+          type={isActive}
         >
           등록
         </Button>

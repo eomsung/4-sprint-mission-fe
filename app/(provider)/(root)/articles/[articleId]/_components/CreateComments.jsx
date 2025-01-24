@@ -53,7 +53,7 @@ function CreateComments() {
           <Button
             className="self-end w-[74px] h-[42px] px-[23px] py-3 box-border rounded-lg"
             disabled={disabled}
-            isActive={isActive}
+            type={isActive}
           >
             등록
           </Button>

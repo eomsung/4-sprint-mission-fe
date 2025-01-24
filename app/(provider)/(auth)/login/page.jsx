@@ -125,7 +125,7 @@ function LoginPage() {
           {/* 버튼 */}
           <Button
             className="w-full h-14 rounded-[40px] px-[124px] py-4"
-            isActive={isActive}
+            type={isActive}
             disabled={disabled}
           >
             로그인

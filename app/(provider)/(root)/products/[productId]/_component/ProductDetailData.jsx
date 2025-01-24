@@ -4,7 +4,7 @@ import React from "react";
 import defaultUserImage from "@/assets/svg/defualt_user_image.svg";
 import Image from "next/image";
 import heartIcon from "@/assets/svg/ic_heart.svg";
-import DropdownMenuForItem from "./DropdownMenuForItem";
+import DropdownMenuForProduct from "./DropdownMenuForProduct";
 
 function ProductDetailData({ product, userData }) {
   const date = dayjs(product.createdAt).format("YYYY.MM.DD");
@@ -25,7 +25,7 @@ function ProductDetailData({ product, userData }) {
             <div className="flex flex-col gap-4 font-semibold justify-between border-b border-[#E5E7EB]">
               <div className="flex justify-between items-center">
                 <h1 className="text-2xl">{product.name} 팔아요</h1>
-                <DropdownMenuForItem />
+                <DropdownMenuForProduct />
               </div>
 
               <p className="text-[40px]">{product.price}</p>
