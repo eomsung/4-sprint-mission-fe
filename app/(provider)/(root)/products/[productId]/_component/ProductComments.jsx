@@ -9,6 +9,7 @@ import { useQuery } from "@tanstack/react-query";
 import api from "@/api";
 import { useParams } from "next/navigation";
 import ProductComment from "./ProductComment";
+import imgInquiryEmpty from "@/assets/svg/img_inquiry_empty.svg";
 
 function ProductComments() {
   const params = useParams();
@@ -23,13 +24,22 @@ function ProductComments() {
   return (
     <div className="flex flex-col gap-10 items-center">
       <div className="flex flex-col w-full gap-10">
-        {comments.map((comment) => {
-          return (
-            <div key={comment.id}>
-              <ProductComment comment={comment} />
+        {comments.length !== 0 ? (
+          comments.map((comment) => {
+            return (
+              <div key={comment.id}>
+                <ProductComment comment={comment} />
+              </div>
+            );
+          })
+        ) : (
+          <div className="flex flex-col self-center gap-2">
+            <div className="w-[196px] h-[196px] relative">
+              <Image src={imgInquiryEmpty.src} alt="img_inquiry_empty" fill />
             </div>
-          );
-        })}
+            <p className="text-[#9CA3AF] self-center">아직 문의가 없어요</p>
+          </div>
+        )}
       </div>
       <Link href={`/products`}>
         <Button className="w-[240px] h-12 rounded-[40px] px=16 py-3">

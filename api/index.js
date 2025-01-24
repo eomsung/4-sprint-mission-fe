@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const baseURL = "http://localhost:3100";
-// const baseURL = "https://four-sprint-mission-be-1.onrender.com";
+// const baseURL = "http://localhost:3100";
+const baseURL = "https://four-sprint-mission-be-1.onrender.com";
 
 const client = axios.create({
   baseURL,
@@ -172,6 +172,13 @@ const patchCommentInProduct = async (commentId, content) => {
   return data;
 };
 
+const createCommentInProduct = async (productId, content) => {
+  const url = `/products/${productId}/comments`;
+  const response = await codeitClient.post(url, { content });
+  const data = response.data;
+  return data;
+};
+
 const api = {
   getArticles,
   getArticle,
@@ -192,6 +199,7 @@ const api = {
   getCommentsInProduct,
   deleteCommentInProduct,
   patchCommentInProduct,
+  createCommentInProduct,
 };
 
 export default api;

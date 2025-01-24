@@ -5,7 +5,7 @@ import api from "@/api";
 import { useParams } from "next/navigation";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-function ArticleComments() {
+function CreateComments() {
   const queryClient = useQueryClient();
   const [comment, setComment] = useState("");
   const params = useParams();
@@ -63,4 +63,4 @@ function ArticleComments() {
   );
 }
 
-export default ArticleComments;
+export default CreateComments;
