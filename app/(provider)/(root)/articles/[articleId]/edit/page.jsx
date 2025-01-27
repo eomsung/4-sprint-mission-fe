@@ -64,8 +64,13 @@ function EditArticlePage() {
         </Button>
       </div>
       <div>
+<<<<<<< HEAD
         <h1>*제목</h1>{" "}
         <input
+=======
+        <h1>*제목</h1>
+        <textarea
+>>>>>>> 5dfef7757b0d806be05806c7c0c5e6660f24dc81
           name="title"
           className="w-full h-[56px] px-6 py-4 bg-[#F3F4F6] rounded-xl resize-none"
           placeholder="제목을 입력해주세요"
@@ -74,7 +79,7 @@ function EditArticlePage() {
         />
       </div>
       <div>
-        <h1>*내용</h1>{" "}
+        <h1>*내용</h1>
         <textarea
           name="content"
           className="w-full h-[282px] px-6 py-4 bg-[#F3F4F6] rounded-xl resize-none"

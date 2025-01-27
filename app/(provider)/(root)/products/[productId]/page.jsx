@@ -2,8 +2,8 @@
 import api from "@/api";
 import { useAuth } from "@/contexts/AuthContext";
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "next/navigation";
-import React from "react";
+import { useParams, useRouter } from "next/navigation";
+import React, { useEffect } from "react";
 import ProductDetailData from "./_component/ProductDetailData";
 import ProductComments from "./_component/ProductComments";
 import CreateCommentInProduct from "./_component/CreateCommentInProduct";
@@ -12,6 +12,14 @@ function ItemDetailPage() {
   const { isLoggedIn } = useAuth();
   const params = useParams();
   const productId = params.productId;
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!loggedIn) {
+      router.replace("/products");
+      alert("로그인을 해주세요");
+    }
+  }, [loggedIn]);
 
   const { data: product, isError } = useQuery({
     queryFn: () => api.getProduct(productId),
