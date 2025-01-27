@@ -64,7 +64,7 @@ function EditArticlePage() {
         </Button>
       </div>
       <div>
-        <h1>*제목</h1>{" "}
+        <h1>*제목</h1>
         <textarea
           name="title"
           className="w-full h-[56px] px-6 py-4 bg-[#F3F4F6] rounded-xl resize-none"
@@ -74,7 +74,7 @@ function EditArticlePage() {
         ></textarea>
       </div>
       <div>
-        <h1>*내용</h1>{" "}
+        <h1>*내용</h1>
         <textarea
           name="content"
           className="w-full h-[282px] px-6 py-4 bg-[#F3F4F6] rounded-xl resize-none"
