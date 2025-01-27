@@ -1,6 +1,6 @@
 import Image from "next/image";
 import defualtImage from "@/assets/svg/img_default.svg";
-import heart from "@/assets/svg/ic_heart.svg";
+import emptyHeart from "@/assets/svg/ic_empty_heart.svg";
 import profile from "@/assets/svg/ic_profile.svg";
 import dayjs from "dayjs";
 
@@ -31,7 +31,7 @@ function Article({ article }) {
         </div>
 
         <span className="flex gap-2 text-[#6B7280]">
-          <Image src={heart.src} width={16} height={16} alt="heart" />
+          <Image src={emptyHeart.src} width={16} height={16} alt="heart" />
           {article.favoriteCount}
         </span>
       </div>

@@ -2,8 +2,8 @@
 import api from "@/api";
 import { useAuth } from "@/contexts/AuthContext";
 import { useQuery } from "@tanstack/react-query";
-import { useParams, useRouter } from "next/navigation";
-import React, { useEffect } from "react";
+import { useParams } from "next/navigation";
+import React from "react";
 import ProductDetailData from "./_component/ProductDetailData";
 import ProductComments from "./_component/ProductComments";
 import CreateCommentInProduct from "./_component/CreateCommentInProduct";
@@ -12,7 +12,6 @@ function ItemDetailPage() {
   const { isLoggedIn } = useAuth();
   const params = useParams();
   const productId = params.productId;
-  // const router = useRouter();
 
   const { data: product, isError } = useQuery({
     queryFn: () => api.getProduct(productId),
@@ -27,14 +26,6 @@ function ItemDetailPage() {
     enabled: isLoggedIn,
     initialData: {},
   });
-
-  // useEffect(() => {
-  //   if (!isLoggedIn) router.replace("/products"); // 로그아웃하면
-  //   if (isError) {
-  //     // 없는 상품 들어가면
-  //     router.replace("/products");
-  //   }
-  // }, [isError, router, isLoggedIn]);
 
   return (
     <div className="flex flex-col items-center m-auto xl:w-[1200px] md:w-[744px] w-[375px] justify-center mt-6 gap-16">

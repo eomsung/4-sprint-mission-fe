@@ -51,7 +51,7 @@ function ProductDetailData({ product, userData }) {
             <div className="flex flex-col gap-4 font-semibold justify-between border-b border-[#E5E7EB]">
               <div className="flex justify-between items-center">
                 <h1 className="text-2xl">{product.name} 팔아요</h1>
-                <DropdownMenuForProduct />
+                <DropdownMenuForProduct product={product} userData={userData} />
               </div>
 
               <p className="text-[40px]">{product.price}</p>

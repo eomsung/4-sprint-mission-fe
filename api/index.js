@@ -150,6 +150,13 @@ const deleteProduct = async (productId) => {
   return data;
 };
 
+const patchProduct = async (productId, dto) => {
+  const url = `/products/${productId}`;
+  const response = await codeitClient.patch(url, dto);
+  const data = response.data;
+  return data;
+};
+
 const getCommentsInProduct = async (productId, limit = 10) => {
   const options = {
     params: {
@@ -214,6 +221,7 @@ const api = {
   getUserData,
   getProduct,
   deleteProduct,
+  patchProduct,
   getCommentsInProduct,
   deleteCommentInProduct,
   patchCommentInProduct,
