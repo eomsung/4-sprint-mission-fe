@@ -41,7 +41,6 @@ function ProductEditPage() {
   useEffect(() => {
     if (product) {
       const { name, description, price, tags } = product;
-      console.log(tags);
       setContext((prev) => ({ ...prev, name, description, price, tags }));
     }
   }, [product]);
@@ -78,7 +77,7 @@ function ProductEditPage() {
 
   return (
     <form
-      className="w-[1200px] flex flex-col items-center m-auto gap-6 mt-6"
+      className="xl:w-[1200px] md:w-[696px] w-[345px] m-auto flex flex-col gap-[32px] mt-8"
       onSubmit={handleSubmit}
     >
       <div className="flex justify-between w-full">
@@ -142,19 +141,19 @@ function ProductEditPage() {
             }}
             onKeyDown={handleKeyDownInTag}
           />
-          <div className="flex flex-wrap">
+          <ol className="flex flex-wrap gap-3">
             {context.tags &&
               context.tags.map((tag, index) => (
-                <ul
+                <li
                   className="py-[6px] px-3 h-9 rounded-[26px] bg-[#F3F4F6] flex gap-2 items-center"
                   key={tag}
                   onClick={() => handleTagClick(index)}
                 >
                   <p>#{tag}</p>
                   <Image src={xIcon.src} alt="xIcon" width={22} height={24} />
-                </ul>
+                </li>
               ))}
-          </div>
+          </ol>
         </div>
       </div>
     </form>

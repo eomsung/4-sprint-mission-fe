@@ -41,7 +41,6 @@ function SignupPage() {
     onSuccess: () => {
       logIn();
       router.replace("/products");
-      console.log("성공");
     },
     onError: (error) => {
       const errorMsg = error.response.data.message;
