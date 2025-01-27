@@ -120,7 +120,7 @@ function ProductDetailData({ product, userData }) {
           </div>
         </div>
       </div>
-      <div className="border-b border-[#E5E7EB]"></div>
+      <div className="border-b border-[#E5E7EB]" />
     </div>
   );
 }

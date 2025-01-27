@@ -20,7 +20,7 @@ function BestArticles({ data }) {
       {bestArticlesData.map((article) => {
         return (
           <Link key={article.id} href={`/articles/${article.id}`}>
-            <BestArticle key={article.id} article={article}></BestArticle>
+            <BestArticle key={article.id} article={article} />
           </Link>
         );
       })}

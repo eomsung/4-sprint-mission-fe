@@ -49,7 +49,7 @@ function CreateComments() {
             placeholder="댓글을 입력해주세요."
             value={comment}
             onChange={(e) => setComment(e.target.value)}
-          ></textarea>
+          />
           <Button
             className="self-end w-[74px] h-[42px] px-[23px] py-3 box-border rounded-lg"
             disabled={disabled}

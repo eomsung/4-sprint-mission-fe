@@ -12,10 +12,12 @@ function ProductEditPage() {
   const params = useParams();
   const queryClient = useQueryClient();
   const productId = params.productId;
+  const [disabled, setDisabled] = useState(true);
+  const [isActive, setIsActive] = useState("inactive");
   const [context, setContext] = useState({
     name: "",
     description: "",
-    price: "",
+    price: 0,
     tags: [],
   });
   const [tag, setTag] = useState("");
@@ -44,6 +46,16 @@ function ProductEditPage() {
     }
   }, [product]);
 
+  useEffect(() => {
+    if (context.name === "" || context.description === "") {
+      setDisabled(true);
+      setIsActive("inactive");
+    } else {
+      setDisabled(false);
+      setIsActive("active");
+    }
+  }, [context]);
+
   const handleTagClick = (index) => {
     const patchedTag = context.tags.filter((_, i) => index !== i);
     setContext((prev) => ({ ...prev, tags: patchedTag }));
@@ -54,7 +66,7 @@ function ProductEditPage() {
     patchProduct();
   };
 
-  const handleKeyDown = (e) => {
+  const handleKeyDownInTag = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
       if (!context.tags.includes(tag)) {
@@ -71,14 +83,20 @@ function ProductEditPage() {
     >
       <div className="flex justify-between w-full">
         <h1 className="font-bold text-xl"> 상품 등록하기</h1>
-        <Button className="h-[42px] py-3 px-[23px] rounded-lg ">수정 </Button>
+        <Button
+          className="h-[42px] py-3 px-[23px] rounded-lg "
+          type={isActive}
+          disabled={disabled}
+        >
+          수정
+        </Button>
       </div>
 
       <div className="w-full flex flex-col gap-[32px]">
         <h2 className="font-bold text-[18px]">상품 이미지</h2>
         <div className="w-full flex flex-col gap-4">
           <h2 className="font-bold text-[18px]">상품명</h2>
-          <textarea
+          <input
             className="resize-none w-full h-14 rounded-xl px-6 py-4 bg-[#F3F4F6]"
             placeholder="상품명을 입력해주세요"
             value={context.name}
@@ -100,25 +118,29 @@ function ProductEditPage() {
         </div>
         <div className="w-full flex flex-col gap-4">
           <h2 className="font-bold text-[18px]">판매 가격</h2>
-          <textarea
+          <input
             className="resize-none w-full h-14 rounded-xl px-6 py-4 bg-[#F3F4F6]"
             placeholder="판매 가격을 입력해주세요"
             value={context.price}
             onChange={(e) => {
-              setContext((prev) => ({ ...prev, price: e.target.value }));
+              setContext((prev) => ({
+                ...prev,
+                price: Number(e.target.value),
+              }));
             }}
+            type="number"
           />
         </div>
         <div className="flex flex-col gap-[14px]">
           <h2 className="font-bold text-[18px]">태그</h2>
-          <textarea
+          <input
             className="resize-none w-full h-14 rounded-xl px-6 py-4 bg-[#F3F4F6]"
             placeholder="태그를 입력해주세요"
             value={tag}
             onChange={(e) => {
               setTag(e.target.value);
             }}
-            onKeyDown={handleKeyDown}
+            onKeyDown={handleKeyDownInTag}
           />
           <div className="flex flex-wrap">
             {context.tags &&

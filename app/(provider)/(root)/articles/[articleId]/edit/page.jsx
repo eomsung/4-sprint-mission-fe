@@ -11,6 +11,7 @@ function EditArticlePage() {
 
   const params = useParams();
   const articleId = params.articleId;
+  const router = useRouter();
 
   useEffect(() => {
     api.getArticle(articleId).then((data) => {
@@ -19,7 +20,6 @@ function EditArticlePage() {
     });
   }, []);
 
-  const router = useRouter();
   useEffect(() => {
     if (context.title === "" || context.content === "") {
       setDisabled(true);
@@ -65,13 +65,13 @@ function EditArticlePage() {
       </div>
       <div>
         <h1>*제목</h1>{" "}
-        <textarea
+        <input
           name="title"
           className="w-full h-[56px] px-6 py-4 bg-[#F3F4F6] rounded-xl resize-none"
           placeholder="제목을 입력해주세요"
           value={context.title}
           onChange={handleChange}
-        ></textarea>
+        />
       </div>
       <div>
         <h1>*내용</h1>{" "}
@@ -81,7 +81,7 @@ function EditArticlePage() {
           placeholder="내용을 입력해주세요"
           value={context.content}
           onChange={handleChange}
-        ></textarea>
+        />
       </div>
     </form>
   );

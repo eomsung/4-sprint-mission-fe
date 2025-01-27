@@ -56,12 +56,12 @@ function ArticleCreatePage() {
       </div>
       <div>
         <h1>*제목</h1>{" "}
-        <textarea
+        <input
           name="title"
           className="w-full h-[56px] px-6 py-4 bg-[#F3F4F6] rounded-xl resize-none"
           placeholder="제목을 입력해주세요"
           onChange={handleChange}
-        ></textarea>
+        />
       </div>
       <div>
         <h1>*내용</h1>{" "}
@@ -70,7 +70,7 @@ function ArticleCreatePage() {
           className="w-full h-[282px] px-6 py-4 bg-[#F3F4F6] rounded-xl resize-none"
           placeholder="내용을 입력해주세요"
           onChange={handleChange}
-        ></textarea>
+        />
       </div>
     </form>
   );

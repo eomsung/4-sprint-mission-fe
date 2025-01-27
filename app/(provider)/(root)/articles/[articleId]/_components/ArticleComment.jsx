@@ -64,7 +64,7 @@ function ArticleComment({ comment }) {
             value={updatedComment}
             onChange={(e) => setUpdatedComment(e.target.value)}
             className="resize-none w-full px-3 py-2 bg-[#F3F4F6] rounded-xl"
-          ></textarea>
+          />
         ) : (
           <div>
             <p> {comment.content}</p>

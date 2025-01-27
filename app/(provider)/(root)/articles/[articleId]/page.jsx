@@ -44,7 +44,7 @@ async function ArticlePage(props) {
       {/* 댓글 작성  */}
       <CreateComments />
       {/* 댓글들  */}
-      <ArticleComments initailComments={comments}></ArticleComments>
+      <ArticleComments initailComments={comments} />
       {/* 버튼 */}
       <Link href={`/articles`}>
         <Button className="w-[240px] h-12 rounded-[40px] px=16 py-3">

@@ -48,7 +48,7 @@ async function ArticlesPage({ searchParams }) {
         </div>
 
         {/* 게시글 */}
-        <Articles articles={articles}></Articles>
+        <Articles articles={articles} />
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ function Articles({ articles }) {
           return (
             <Link key={article.id} href={`/articles/${article.id}`}>
               <div>
-                <Article article={article}></Article>
+                <Article article={article} />
               </div>
             </Link>
           );
