@@ -15,11 +15,11 @@ function ItemDetailPage() {
   const router = useRouter();
 
   useEffect(() => {
-    if (!loggedIn) {
+    if (!isLoggedIn) {
       router.replace("/products");
       alert("로그인을 해주세요");
     }
-  }, [loggedIn]);
+  }, [isLoggedIn]);
 
   const { data: product, isError } = useQuery({
     queryFn: () => api.getProduct(productId),
